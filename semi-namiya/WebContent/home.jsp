@@ -46,18 +46,18 @@
 	<c:import url="import/header.jsp"/>
 	
 	<div class="container-fluid">
-		<!-- 메인 이미지 -->
-		<div class="row img">
-			<div class="col-sm-offset-1 col-sm-9 text-center text-center animated flipInX">
-				<img src="assets/img/board.jpg">
-			</div> <!-- col-sm-offset-1 col-sm-9 text-center -->
-		</div> <!-- row img -->
-		
-		<!-- 메인 게시판 -->
+	
+		<!-- 메인 -->
 		<div class="row main">
 			<div class="col-sm-offset-2 col-sm-8">
 				<c:import url="${url}"/>
 			</div> <!-- col-sm-offset-2 col-sm-8 -->
+			
+			<!-- 광고 -->
+			<div class="col-sm-2">
+				<p style="height: 200px;"></p>
+				<a href="#" id="adv"><img src="" title="이동?"></a>
+			</div>
 		</div> <!-- row main -->
 		
 	</div> <!-- contaniner-fluid -->
@@ -68,6 +68,34 @@
 	</footer>
 </body>
 <script>
-	
+$(document).ready(function() {
+	var num = randomNum(6);
+	$("#adv img").prop("src","adv/"+num+".jpg");
+	// 광고이미지 선택시 url이동
+	switch (num) {
+	case 1:
+		$("#adv").prop("href","http://www.naver.com")
+		break;
+	case 2:
+		$("#adv").prop("href","http://www.google.com")
+		break;
+	case 3:
+		$("#adv").prop("href","http://www.daum.net")
+		break;
+	case 4:
+		$("#adv").prop("href","http://www.nate.com")
+	case 5:
+		$("#adv").prop("href","http://www.instagram.com")
+		break;
+	case 6:
+		$("#adv").prop("href","http://www.facebook.com")
+		break;
+	}
+	// 난수만들기
+	function randomNum(num) {
+		var randomNum = Math.ceil(Math.random() * num);
+		return randomNum;
+	}
+})
 </script>
 </html>

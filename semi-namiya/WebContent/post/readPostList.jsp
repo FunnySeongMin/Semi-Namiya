@@ -8,6 +8,11 @@ a.post {
 	color: black;
 }
 </style>
+<div class="row img">
+	<div class="col-sm-offset-1 col-sm-9 text-center text-center animated flipInX">
+		<img src="assets/img/board.jpg">
+	</div> <!-- col-sm-offset-1 col-sm-9 text-center -->
+</div> <!-- row img -->
 <table class="table table-hover">
 	<thead>
 		<tr>
