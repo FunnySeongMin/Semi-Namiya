@@ -22,7 +22,8 @@ public class CreateReplyController implements Controller {
 		String pContent=request.getParameter("acontent");
 		NamiyaAnswerVO answerVO=new NamiyaAnswerVO(pNo,pTitle, pContent);
 		NamiyaDAO.getInstance().createReply(answerVO);
-		return "home.jsp";
+
+		return "dispatcher?command=ReadPostInfo&pNo="+pNo;
 	}
 
 }

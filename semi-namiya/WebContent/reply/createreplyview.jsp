@@ -2,16 +2,14 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	
 	$("#cancel").submit(function(){
 		location.href="index.jsp";
 	});
 });
 </script>
 <form action="dispatcher">
-<input type="hidden" name="command" value="UpdateReply">
-<input type="hidden" name="pno" value="${requestScope.avo.pNo }">
+<input type="hidden" name="command" value="CreateReply">
+<input type="hidden" name="pno" value="${requestScope.postVO.pNo}">
 <table>
 	<tr>
 		<th id="title">제목</th>
@@ -19,7 +17,7 @@ $(document).ready(function(){
 	</tr>
 	<tr>
 		<th id="content">내용</th>
-		<th><pre><textarea rows="50" cols="50" name="acontent"></textarea></pre></th>
+		<th><pre><textarea rows="30" cols="40" name="acontent"></textarea></pre></th>
 	</tr>
 </table>
 <br><br>
