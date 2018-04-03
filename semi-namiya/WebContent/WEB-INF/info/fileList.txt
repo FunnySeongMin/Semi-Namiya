@@ -1,0 +1,25 @@
+***fileList***
+UesrDAO -  Login (Sting id , String password) -->NamiyaUserVO
+				CreateUser (NamiyaUserVO) --> void
+				UpdateUser (NamiyaUserVO) -->void
+				DeleteUser (String id) --> void
+				TotalUserCount () --> int
+NamiyaDAO -  CreatePost ( NamiyaPostVO <- reset pno ) --> void
+					CreateReply ( NamiyaPostVO <- reset pno ) --> void
+					ReadPostList (PagingBean) --> NamiyaPostVO
+					ReadMyPostList(String id , PagingBean) sql문이 두번돌아서 나의 토탈 카운트 , 내 글 찾기 --> NamiyaPostVO
+					ReadPostInfo (int pno) --> NamiyaPostVO
+					ReadReply (int pno) --> NamiyaPostVO 
+					UpdatePost (int pno) --> void -->ReadPostInfo로 이동
+					UpdateReply (int pno) --> void -->ReadPostInfo로 이동
+					DeletePost (int pno) --> void
+					DeleteReply (int pno) --> void
+					TotalPostCount () --> int
+					UnansweredList () --> NamiyaPostVO
+
+**controller**
+User - LoginController , CreateUserController , UpdateUserViewController , UpdateUserController , DeleteUserController
+
+		, TotalUserCountController
+			
+Namiya - 
