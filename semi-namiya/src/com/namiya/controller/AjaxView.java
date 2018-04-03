@@ -24,7 +24,6 @@ public class AjaxView extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		out.print(request.getAttribute("responseBody").toString());
-		System.out.println(request.getAttribute("responseBody").toString());
 		out.close();
 	}
 

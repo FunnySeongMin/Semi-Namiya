@@ -69,7 +69,10 @@ a.post {
                </div>
                <div id="collapseThree" class="accordion-body collapse">
                   <div class="accordion-inner">
-                  <c:import url="/reply/replyupdateview.jsp" />
+                  <!-- 글 번호 같이 넘겨 줌 -->
+                  <c:import url="/reply/createreplyview.jsp">
+                  <c:param name="pNo" value="${postVO.pNo}"/>
+                  </c:import>
                   </div>
                </div>
             </div>
