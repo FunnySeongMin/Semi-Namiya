@@ -115,3 +115,9 @@ to_char(p_date,'yyyy.mm.dd') p_date from namiya_post n, namiya_user u
 where n.id=u.id and u.nickname = '꾸꾸' ) p,
 namiya_user u where p.id=u.id and rnum
 between 1 and 30 order by p_no desc
+
+-- 관리자용 답변 없는 게시글 검색
+select p.p_no,p.p_title,p.timeposted,p.p_lock,u.nickname 
+from (select row_number() over(order by p_no desc) as rnum,p_no,p_title,p_lock,reply, 
+id,to_char(p_date,'yyyy.mm.dd') timeposted from namiya_post where reply=0 ) p 
+, namiya_user u where u.id=p.id and rnum between 1 and 100
