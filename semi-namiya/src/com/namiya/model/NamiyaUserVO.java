@@ -6,6 +6,13 @@ public class NamiyaUserVO {
 	private String password;
 	private String grade;
 	
+	//관리자 페이지 회원관리 용 생성자
+	public NamiyaUserVO(String id, String nickName) {
+		super();
+		this.id = id;
+		this.nickName = nickName;
+	}
+
 	//회원 정보 조회용 생성자(추후에 사용 예정)
 	public NamiyaUserVO(String id, String nickName, String password, String grade) {
 		super();

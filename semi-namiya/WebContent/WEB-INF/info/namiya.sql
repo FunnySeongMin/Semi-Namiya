@@ -2,8 +2,9 @@
 DROP TABLE namiya_user;
 CREATE TABLE namiya_user (
    id VARCHAR2(100) PRIMARY KEY, -- 아이디(이메일형식)
-    password VARCHAR2(100) NOT NULL, -- 패스워드
+   password VARCHAR2(100) NOT NULL, -- 패스워드
    nickname VARCHAR2(100) NOT NULL, -- 닉네임
+   logindate	date	default sysdate,
    grade VARCHAR2(1) DEFAULT 'm' -- 회원상태 여부. 회원:m, 관리자:a, 탈퇴한회원:d 
 );
 
@@ -18,7 +19,7 @@ CREATE TABLE namiya_post (
     p_lock VARCHAR2(1) NOT NULL, -- 게시글공개여부. n:공개, y:비공개
     reply NUMBER DEFAULT 0, -- 답변 여부. 0이면 답변 없음, 1이면 답변 있음
     id VARCHAR2(100) NOT NULL, -- 유저 아이디(참조키)
-    CONSTRAINT fk_namiya_id FOREIGN KEY(id) REFERENCES namiya_user(id)
+    CONSTRAINT fk_namiya_id FOREIGN KEY(id) REFERENCES namiya_user(id) ON DELETE CASCADE
 );
 -- 게시판 글번호 시퀀스
 DROP SEQUENCE namiya_post_seq;
@@ -38,7 +39,7 @@ CREATE TABLE namiya_answer (
 
 -- **namiya_user**
 -- 관리자 가입
-INSERT INTO namiya_user 
+INSERT INTO namiya_user (id, password, nickname , grade ) 
 VALUES('ukyi@naver.com','123','욱이','a'); 
 
 -- 회원 가입
@@ -46,8 +47,11 @@ INSERT INTO namiya_user(id, password, nickname )
 VALUES('test@naver.com','123','test'); 
 
 -- 회원 조회
-SELECT id, password, nickname, grade 
+SELECT id, password, nickname, grade, logindate
 FROM namiya_user;
+
+--로그인 시 로그인 일자 검색
+update namiya_user set logindate=sysdate where id='test@naver';
 
 -- 개인정보 수정
 UPDATE namiya_user SET nickname = '테스트1', password = '123' 
@@ -57,6 +61,14 @@ WHERE id = 'test@naver.com';
 UPDATE namiya_user SET grade = 'd'
 WHERE id = 'test1@naver.com';
 
+--현재 시간 기준 로그인시간과 격차 조회
+update namiya_user set logindate=to_date('1995.12.05','yyyy.mm.dd') where id='test@naver.com';
+
+select count(*) from namiya_uesr where MONTHS_BETWEEN
+(to_char(sysdate,'yyyymmdd'),to_char(logindate,'yyyymmdd'))>36;
+
+select id,nickname from namiya_user
+where MONTHS_BETWEEN(to_char(sysdate,'yyyymmdd'),to_char(logindate,'yyyymmdd'))>36;
 
 -- **namiya_post**
 --게시글 작성

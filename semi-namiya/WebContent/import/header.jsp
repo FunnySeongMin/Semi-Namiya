@@ -48,7 +48,7 @@
 			<a id="adminModal" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>관리자 페이지 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/dispatcher?command=UnansweredList">답변없는 게시글 목록</a></li>
-						<li><a href="#">회원 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/dispatcher?command=AdminPage">회원 관리</a></li>
 						<!-- <li class="divider"></li>
 						<li class="dropdown-header">Dropdown header</li> -->
 						<!-- <li><a href="#">Separated link</a></li>

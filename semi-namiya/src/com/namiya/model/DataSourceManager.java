@@ -18,8 +18,8 @@ public class DataSourceManager {
 		BasicDataSource dataSource=new BasicDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:xe");
-		dataSource.setUsername("scott");
-		dataSource.setPassword("tiger");
+		dataSource.setUsername("namiya");
+		dataSource.setPassword("kosta179");
 		ds=dataSource;
 	}
 	public static DataSourceManager getInstance() {

@@ -15,13 +15,14 @@ import com.namiya.controller.reply.ReadReplyController;
 import com.namiya.controller.reply.UnAnsweredListController;
 import com.namiya.controller.reply.UpdateReplyController;
 import com.namiya.controller.reply.UpdateReplyViewController;
+import com.namiya.controller.user.AdminPageController;
 import com.namiya.controller.user.CheckIdController;
 import com.namiya.controller.user.CreateUserController;
 import com.namiya.controller.user.DeleteUserController;
 import com.namiya.controller.user.LoginController;
 import com.namiya.controller.user.LogoutController;
+import com.namiya.controller.user.RemoveUserController;
 import com.namiya.controller.user.TempPasswordController;
-import com.namiya.controller.user.TotalUserCountController;
 import com.namiya.controller.user.UpdateUserController;
 import com.namiya.controller.user.UpdateUserViewController;
 
@@ -52,8 +53,8 @@ public class HandlerMapping {
 			c=new DeleteUserController();
 		}else if(command.equals("TempPassword")) {
 			c=new TempPasswordController();
-		}else if(command.equals("TotalUserCount")) {
-			c=new TotalUserCountController();
+		}else if(command.equals("AdminPage")) {
+			c=new AdminPageController();
 		}else if(command.equals("CreatePost")) {
 			c=new CreatePostController();
 		}else if(command.equals("CreatePostView")) {
@@ -84,6 +85,8 @@ public class HandlerMapping {
 			c=new UnAnsweredListController();
 		}else if(command.equals("Search")) {
 			c=new SearchController();
+		}else if(command.equals("removeUser")) {
+			c=new RemoveUserController();
 		}
 		return c;
 	}

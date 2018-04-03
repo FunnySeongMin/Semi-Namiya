@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -37,9 +38,15 @@ public class NamiyaUserDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		StringBuilder sql=new StringBuilder();
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sql = new StringBuilder();
+			sql.append("update namiya_user set logindate=sysdate where id=?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			sql.delete(0, sql.length());
+			pstmt.close();
 			sql.append("SELECT nickname, grade ");
 			sql.append("FROM namiya_user ");
 			sql.append("WHERE id = ? AND PASSWORD = ?");
@@ -174,4 +181,37 @@ public class NamiyaUserDAO {
 		}
 		return count;
 	}//method
+	public ArrayList<NamiyaUserVO> searchUser() throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList<NamiyaUserVO> list=new ArrayList<NamiyaUserVO>();
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("select id,nickname from namiya_user ");
+			sql.append("where MONTHS_BETWEEN(to_char(sysdate,'yyyymmdd'),to_char(logindate,'yyyymmdd'))>36 ");
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new NamiyaUserVO(rs.getString(1), rs.getString(2)));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	public void removeUser(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete from namiya_user where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
