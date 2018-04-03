@@ -60,27 +60,29 @@ public class NamiyaDAO {
 		}
 	}// method
 
-	// 답변 등록 메서드
-	public void createReply(NamiyaAnswerVO answerVO) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		try {
-			con = dataSource.getConnection();
-			sql = "UPDATE namiya_post SET reply = 1 WHERE p_no = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
-			pstmt.close();
-			sql = "insert into namiya_answer(p_no,a_title,a_content) valuse(?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, answerVO.getpNo());
-			pstmt.setString(2, answerVO.getaTitle());
-			pstmt.setString(3, answerVO.getaContent());
-			pstmt.executeUpdate();
-		} finally {
-			closeAll(pstmt, con);
-		}
-	}// method
+	//답변 등록 메서드
+		public void createReply(NamiyaAnswerVO answerVO) throws SQLException {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			String sql=null;
+			try {
+				con=dataSource.getConnection();
+				sql="UPDATE namiya_post SET reply = 1 WHERE p_no = ?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, answerVO.getpNo());
+				pstmt.executeUpdate();
+				pstmt.close();
+				sql="insert into namiya_answer(p_no,a_title,a_content) values(?,?,?)";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, answerVO.getpNo());
+				pstmt.setString(2, answerVO.getaTitle());
+				pstmt.setString(3, answerVO.getaContent());
+				pstmt.executeUpdate();
+			}finally {
+				closeAll(pstmt, con);
+			}
+		}//method
+
 
 	// pagingBean에 따른 row넘버 기준으로 게시물 목록을 반환하는 메서드
 	public ArrayList<NamiyaPostVO> readPostList(PagingBean pagingBean) throws SQLException {
@@ -554,7 +556,7 @@ public class NamiyaDAO {
 					count = rs.getInt(1);
 				}
 			} else if (category.equals("작성자")) {
-				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id u.nickname like '%' || ? || '%'";
+				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id and u.nickname like '%' || ? || '%'";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs = pstmt.executeQuery();
