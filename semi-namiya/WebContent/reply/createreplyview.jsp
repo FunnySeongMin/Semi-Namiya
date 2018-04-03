@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#cancel").submit(function(){
-		location.href="index.jsp";
+	$("#cancel").click(function(){
+		location.href="${pageContext.request.contextPath}/dispatcher?command=ReadPostInfo&pNo=${postVO.pNo}";
 	});
 });
 </script>
