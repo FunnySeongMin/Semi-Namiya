@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 
 import com.namiya.controller.Controller;
+import com.namiya.model.NamiyaDAO;
 import com.namiya.model.NamiyaUserDAO;
 import com.namiya.model.NamiyaUserVO;
 
@@ -30,7 +31,9 @@ public class LoginController implements Controller {
 					json.put("flag", "success");
 					request.setAttribute("responseBody", json);
 					//읽지 않은 답글수 담기
-					session.setAttribute("unreadCount", 0);
+					int count = NamiyaDAO.getInstance().getUnreadAnswerCount(vo.getId());
+					System.out.println("로그인 컨트롤러"+count);
+					session.setAttribute("unreadCount", count);
 				}
 				return "AjaxView";
 	}
