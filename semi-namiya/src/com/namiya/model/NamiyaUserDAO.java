@@ -214,4 +214,24 @@ public class NamiyaUserDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	public int searchUserCount() throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("select count(*) from namiya_user ");
+			sql.append("where MONTHS_BETWEEN(to_char(sysdate,'yyyymmdd'),to_char(logindate,'yyyymmdd'))>36 ");
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}
 }

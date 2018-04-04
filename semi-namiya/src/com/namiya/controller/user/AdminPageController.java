@@ -16,7 +16,7 @@ public class AdminPageController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//전체 회원수를 검색해주는 컨트롤러
-		int totalCount=NamiyaUserDAO.getInstance().totalUserCount();
+		int totalCount=NamiyaUserDAO.getInstance().searchUserCount();
 		String nowPage=request.getParameter("pageNo");
 		PagingBean pagingBean=null;
 		if(nowPage==null) {
