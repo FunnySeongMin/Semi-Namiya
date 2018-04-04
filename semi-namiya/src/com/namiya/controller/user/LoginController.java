@@ -29,7 +29,8 @@ public class LoginController implements Controller {
 					json = new JSONObject();
 					json.put("flag", "success");
 					request.setAttribute("responseBody", json);
-					
+					//읽지 않은 답글수 담기
+					session.setAttribute("unreadCount", 0);
 				}
 				return "AjaxView";
 	}

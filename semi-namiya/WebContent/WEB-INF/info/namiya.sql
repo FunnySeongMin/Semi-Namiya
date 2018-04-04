@@ -28,7 +28,7 @@ CREATE TABLE namiya_post (
 DROP SEQUENCE namiya_post_seq;
 CREATE SEQUENCE namiya_post_seq;
 
-
+select namiya_post_seq.currval from dual
 ALTER TABLE namiya_answer ADD(readRe VARCAHR2(13)); 
 
 -- 답변 테이블
