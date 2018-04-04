@@ -18,7 +18,7 @@ public class DeleteReplyController implements Controller {
 		}
 		int pno=Integer.parseInt(request.getParameter("pno"));
 		NamiyaDAO.getInstance().deleteReply(pno);
-		return "index.jsp";
+		return "redirect:dispatcher?command=ReadPostInfo&pNo="+pno;
 	}
 
 }

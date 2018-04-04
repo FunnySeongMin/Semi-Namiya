@@ -16,11 +16,11 @@ public class UpdateReplyController implements Controller {
 		if(session==null||session.getAttribute("userVO")==null){
 			return "redirect:index.jsp";
 		}
-		int pno=Integer.parseInt(request.getParameter(""));
-		String aTitle=request.getParameter("");
-		String aContent=request.getParameter("");
+		int pno=Integer.parseInt(request.getParameter("pno"));
+		String aTitle=request.getParameter("aTitle");
+		String aContent=request.getParameter("aContent");
 		NamiyaDAO.getInstance().updateReply(pno,aTitle,aContent);
-		return "dispatcher?command=ReadReply?pno="+pno;
+		return "redirect:dispatcher?command=ReadPostInfo&pNo="+pno;
 	}
 
 }
