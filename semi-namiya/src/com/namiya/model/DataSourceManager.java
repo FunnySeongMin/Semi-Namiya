@@ -17,7 +17,7 @@ public class DataSourceManager {
 	private DataSourceManager() {
 		BasicDataSource dataSource=new BasicDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+		dataSource.setUrl("jdbc:oracle:thin:@192.168.0.121:1521:xe");
 		dataSource.setUsername("namiya");
 		dataSource.setPassword("kosta179");
 		ds=dataSource;
