@@ -72,7 +72,7 @@ public class NamiyaDAO {
 			pstmt.setInt(1, answerVO.getpNo());
 			pstmt.executeUpdate();
 			pstmt.close();
-			sql = "insert into namiya_answer(p_no,a_title,a_content) valuse(?,?,?)";
+			sql = "insert into namiya_answer(p_no,a_title,a_content) values(?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, answerVO.getpNo());
 			pstmt.setString(2, answerVO.getaTitle());
