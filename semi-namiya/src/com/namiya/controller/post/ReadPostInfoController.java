@@ -35,6 +35,10 @@ public class ReadPostInfoController implements Controller {
 				url="home.jsp";
 			}else if(postVO.getLock().equals("y")&&!vo.getGrade().equals("a")) {
 				url="redirect:index.jsp";
+			}else {
+				request.setAttribute("postVO", postVO);
+				request.setAttribute("url", "/post/readPostInfo.jsp");
+				url="home.jsp";
 			}
 		}
 		return url;
