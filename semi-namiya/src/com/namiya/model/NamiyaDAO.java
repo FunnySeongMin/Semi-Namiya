@@ -555,7 +555,7 @@ public class NamiyaDAO {
 					count = rs.getInt(1);
 				}
 			} else if (category.equals("작성자")) {
-				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id u.nickname like '%' || ? || '%'";
+				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id and u.nickname=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs = pstmt.executeQuery();
