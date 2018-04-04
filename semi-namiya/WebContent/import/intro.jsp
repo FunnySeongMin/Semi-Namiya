@@ -90,5 +90,6 @@ CL이상욱입니다.</p>
 				<span class="fa fa-chevron-right icon-next"></span>
 			</a>
 		</div>
+		<img src="assets/img/조직도.png" alt="">
 	</div>
 </div>
