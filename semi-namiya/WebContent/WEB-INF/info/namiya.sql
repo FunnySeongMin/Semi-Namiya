@@ -26,6 +26,8 @@ DROP SEQUENCE namiya_post_seq;
 CREATE SEQUENCE namiya_post_seq;
 
 
+ALTER TABLE namiya_answer ADD(readRe VARCAHR2(13)); 
+
 -- 답변 테이블
 DROP TABLE namiya_answer;
 CREATE TABLE namiya_answer (
@@ -40,7 +42,9 @@ CREATE TABLE namiya_answer (
 -- **namiya_user**
 -- 관리자 가입
 INSERT INTO namiya_user (id, password, nickname , grade ) 
-VALUES('ukyi@naver.com','123','욱이','a'); 
+VALUES('cloudysunny@gmail.com','123','NM고독한 널포인터','a'); 
+
+delete from namiya_user where id='cloudysunny@gmail.com'
 
 -- 회원 가입
 INSERT INTO namiya_user(id, password, nickname ) 
