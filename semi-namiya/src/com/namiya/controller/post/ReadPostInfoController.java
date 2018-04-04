@@ -19,6 +19,10 @@ public class ReadPostInfoController implements Controller {
 		}else {
 			int pno=Integer.parseInt(request.getParameter("pNo"));
 			NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
+			if(postVO.getReply()==1) {
+				postVO.setAnswerVO(NamiyaDAO.getInstance().readReply(pno));
+				System.out.println(postVO.getAnswerVO().getaContent());
+			}
 			request.setAttribute("postVO", postVO);
 			request.setAttribute("url", "/post/readPostInfo.jsp");
 			return "home.jsp";

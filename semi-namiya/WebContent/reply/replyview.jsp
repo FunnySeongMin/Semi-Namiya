@@ -1,35 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$.ajax({//저장된 답글 불러오기
-            type:"get",
-            dataType:"json",
-            url:"${pageContext.request.contextPath}/dispatcher",
-            data:"command=ReadReply&pno="+${postVO.pNo},
-            success:function(data){
-              $("#title").html(data.aTitle);
-              $("#date").html(data.aDate);
-              $("#content").html("<pre>"+data.aContent+"</pre>");
-            }//sucess
-         });//ajax
-		$("#update").click(function(){
-			location.href="dispatcher?command=UpdateReplyView&pno=";
-		});
-		$("#delete").click(function(){
-			location.href="dispatcher?command=DeleteReply&pno=";
-		});
-	});
 </script>
+<form action="${pageContext.request.contextPath}/dispatcher" name="deleteForm" method="post">
+<input type="hidden" name="command" value="DeleteReply">
+<input type="hidden" name="pno" value="${postVO.pNo}">
 <table>
 	<tr>
-		<th colspan="2"><span id="title"></span> 	<span id="date"></span></th>
-		
+		<th colspan="2">
+		<span id="title">${postVO.answerVO.aTitle}</span> 	
+		<span id="date">${postVO.answerVO.aDate}</span></th>
 	</tr>
 	<tr>
-		<th><span id="content"></span></th>
-		<th></th>
+		<th><span id="content">${postVO.answerVO.aContent}</span></th>
 	</tr>
 </table>
+<input type="submit" name="deleteReply" id="deleteReply" value="삭제" onclick="submitReplyForm()">
+</form>
 <br><br>
-<input type="button" id="update" value="수정">	<input type="button" id="delete" value="삭제">

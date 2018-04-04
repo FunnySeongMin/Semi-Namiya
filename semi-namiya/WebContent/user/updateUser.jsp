@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<p style="height: 200px;"></p>
 <div class="row updateForm">
 	<div class="col-sm-offset-2 col-sm-7 text-center animated fadeInDown">
 		<div class="panel panel-primary" id="panels" data-effect="helix">

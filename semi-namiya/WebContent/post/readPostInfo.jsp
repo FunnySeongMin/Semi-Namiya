@@ -46,18 +46,27 @@ a.post {
          <c:if test="${postVO.reply==1}"><!-- reply값이 1일때만 답글뷰 보여주기 -->
             <div class="accordion-group">
                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse"
-                     data-parent="#accordion2" href="#collapseOne">
+                  <a class="accordion-toggle"  id="togglebarName" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseOne"><!-- 토글바(제목 보이는 부분) -->
                      답글 보기
                   </a>
                </div>
-               <div id="collapseOne" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                  <c:import url="/reply/replyview.jsp"/>
+               <div id="collapseOne" class="accordion-body collapse" >
+                  <div class="accordion-inner"><!-- 내용 보이는 부분 -->
+                  <div class="replyView" id="replyView"><!-- 답글보기 -->
+                  	<c:import url="/reply/replyview.jsp"/>
+                  </div><!-- 답글보기 -->
+                  <div class="updateView" id="updateView"><!-- 답글 수정 -->
+                  	<c:import url="/reply/replyupdateview.jsp"/>
+                  	
+                  </div><!-- 답글 수정 -->
+                  
+                  <span id="update-cancel">수정</span>
                   </div>
                </div>
             </div>
            </c:if><!-- reply값이 1일때만 답글뷰 보여주기 -->
+           
            
            <c:if test="${userVO.grade=='a' && postVO.reply==0}"><!-- 관리자일때만 답글쓰기 -->
             <div class="accordion-group">
@@ -69,27 +78,15 @@ a.post {
                </div>
                <div id="collapseThree" class="accordion-body collapse">
                   <div class="accordion-inner">
-                  <c:import url="/reply/replyupdateview.jsp" />
+                  <!-- 글 번호 같이 넘겨 줌 -->
+                  <c:import url="/reply/createreplyview.jsp">
+                  <c:param name="pNo" value="${postVO.pNo}"/>
+                  </c:import>
                   </div>
                </div>
             </div>
            </c:if><!-- 관리자일때만 답글쓰기 -->
            
- 		<span id="replyupdate"><!--답글 수정 버튼을 눌렀을 때에만 보이기-->
-            <div class="accordion-group">
-               <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse"
-                     data-parent="#accordion2" href="#collapseThree"> <em
-                     class="fa fa-plus fa-fw"></em>답글 수정
-                  </a>
-               </div>
-               <div id="collapseThree" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                  <c:import url="/reply/replyupdateview.jsp" />
-                  </div>
-               </div>
-            </div>
-       </span><!--답글 수정 버튼을 눌렀을 때에만 보이기-->
          </div>
       
       </div>
@@ -100,10 +97,31 @@ a.post {
 
 
 <script type="text/javascript">
-	
+	var flag='view';
 	$(document).ready(function() {
-		$("#replyupdate").hide();
-	})
+		$("#updateView").hide();
+		
+		$("#update-cancel").click(function() {
+			if(flag=='view'){//flag가 view일 때 수정/수정취소 버튼을 누르면 수정폼으로 전환
+				$("#togglebarName").text("답글 수정");
+				$("#update-cancel").text("수정 취소");
+				$("#delete-save").val("저장");
+				$("#replyView").hide();
+				$("#updateView").show();
+				flag='update';
+			}else{//flag가 update일 때 수정/수정취소 버튼을 누르면 답글뷰(삭제폼)으로 전환
+				$("#togglebarName").text("답글 보기");
+				$("#update-cancel").text("수정");
+				$("#delete-save").val("삭제");
+				$("#replyView").show();
+				$("#updateView").hide();
+				flag='view';
+			}
+			
+		})
+	})//ready
+	
+
 	function deleteConfirm() {
 		var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
 		confirmModal("게시글을 삭제하시겠습니까?",url,"danger")

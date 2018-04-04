@@ -21,12 +21,8 @@ public class ReadReplyController implements Controller {
 		}
 		int pno=Integer.parseInt(request.getParameter("pno"));
 		NamiyaAnswerVO vo=NamiyaDAO.getInstance().readReply(pno);
-		JSONObject json = new JSONObject();
-		json.put("aTitle", vo.getaTitle());
-		json.put("aContent", vo.getaContent());
-		json.put("aDate", vo.getaDate());
-		request.setAttribute("responseBody", json);
-		return "AjaxView";
+		request.setAttribute("url", "/post/readPostInfo.jsp");
+		return "home.jsp";
 	}
 
 }
