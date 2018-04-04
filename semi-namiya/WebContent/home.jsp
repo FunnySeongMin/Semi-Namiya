@@ -55,7 +55,7 @@
 			
 			<!-- 광고 -->
 			<div class="col-sm-2">
-				<p style="height: 200px;"></p>
+				<!-- <p style="height: 200px;"></p> -->
 				<a href="#" id="adv"><img src="" title="이동?"></a>
 			</div>
 		</div> <!-- row main -->
@@ -84,6 +84,7 @@ $(document).ready(function() {
 		break;
 	case 4:
 		$("#adv").prop("href","http://www.nate.com")
+		break;
 	case 5:
 		$("#adv").prop("href","http://www.instagram.com")
 		break;
