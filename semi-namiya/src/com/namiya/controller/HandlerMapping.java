@@ -43,6 +43,8 @@ public class HandlerMapping {
 			c=new LogoutController();
 		}else if(command.equals("CheckId")) {
 			c=new CheckIdController();
+		}else if(command.equals("Intro")) {
+			c=new IntroController();
 		}else if(command.equals("CreateUser")) {
 			c=new CreateUserController();
 		}else if(command.equals("UpdateUser")) {
