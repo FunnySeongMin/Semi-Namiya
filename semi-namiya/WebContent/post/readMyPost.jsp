@@ -68,12 +68,6 @@ a.post {
 		</c:forEach>
 	</tbody>
 </table>
-<!-- 글쓰기 view로 넘어가는 버튼 추가 
-	  로그인하지 않은 사용자에게는 버튼 제공 X -->
-<c:if test="${sessionScope.userVO!=null}">
-	<button type="button" value="글쓰기" class="btn btn-primary btn-sm"
-		onclick="location.href='${pageContext.request.contextPath}/dispatcher?command=CreatePostView'">글쓰기</button>
-</c:if>
 <div class="col-sm-10 text-center">
 	
 	<div class="input-group col-sm-offset-4 col-sm-4">
