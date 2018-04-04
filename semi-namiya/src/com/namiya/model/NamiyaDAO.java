@@ -395,10 +395,10 @@ public class NamiyaDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select p.p_no,p.p_title,p.timeposted,p.p_lock,u.nickname ");
+			sql.append("select p.p_no,p.p_title,p.timeposted,p.p_lock,u.nickname,p.reply ");
 			sql.append("from (select row_number() over(order by p_no desc) as rnum,p_no,p_title,p_lock,reply, ");
-			sql.append("id,to_char(p_date,'yyyy.mm.dd') timeposted from namiya_post) p ");
-			sql.append(", namiya_user u where u.id=p.id and u.id=? and rnum between ? and ? ");
+			sql.append("id,to_char(p_date,'yyyy.mm.dd') timeposted from namiya_post where id=?) p ");
+			sql.append(", namiya_user u where u.id=p.id and rnum between ? and ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
@@ -412,6 +412,7 @@ public class NamiyaDAO {
 				pvo.setpTitle(rs.getString(2));
 				pvo.setpDate(rs.getString(3));
 				pvo.setLock(rs.getString(4));
+				pvo.setReply(rs.getInt(6));
 				pvo.setUserVO(vo);
 				list.add(pvo);
 			}
