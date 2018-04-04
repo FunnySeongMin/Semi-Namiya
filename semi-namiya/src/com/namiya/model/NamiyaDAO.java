@@ -184,7 +184,7 @@ public class NamiyaDAO {
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
