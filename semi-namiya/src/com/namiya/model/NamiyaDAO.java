@@ -406,6 +406,7 @@ public class NamiyaDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				NamiyaUserVO vo = new NamiyaUserVO();
+				vo.setId(id);
 				vo.setNickName(rs.getString(5));
 				NamiyaPostVO pvo = new NamiyaPostVO();
 				pvo.setpNo(rs.getInt(1));
