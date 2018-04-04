@@ -40,7 +40,7 @@
 
 <!-- 답글보기 -->
 <div class="row">
-<div class="col-sm-offset-2 col-sm-7">
+	<div class="col-sm-offset-2 col-sm-7">
 		<div class="text-center">
 			<c:if test="${postVO.reply==1}"> <!-- 답글이있을때만 보여주기 -->
 				<button type="button" id="replyViewBtn" class="btn btn-sm btn-primary animated fadeInDown">답글</button>
@@ -49,36 +49,36 @@
 				<!-- <button type="button" id="replyWriteBtn" class="btn btn-sm btn-primary" onclick="location.href='dispatcher?command=CreateReplyView'">답글쓰기</button> -->
 				<button type="button" id="replyWriteBtn" class="btn btn-sm btn-primary animated fadeInDown">답글쓰기</button>
 			</c:if>
-		</div>
-<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
-	<div class="panel panel-info" id="replyViewForm" data-effect="helix">
-		<div class="panel-heading">
-			답글
-		</div> <!-- panel-heading -->
-		<div class="panel-body">
-			<table class="table table-striped">
-					<thead>
-						<tr>
-							<td>제목 : ${postVO.answerVO.aTitle}</td>
-							<td>작성시간 : ${postVO.answerVO.aDate}</td>
-						</tr>
-					</thead>
-				</table>
-			<div class="alert alert-info" style="white-space: pre-wrap;">${postVO.answerVO.aContent}</div>
-		</div>
-		<div class="panel-footer">
-			<div class="text-center">
-				<c:if test="${userVO.grade == 'a' }">
-					<button type="button" id="updateReplyBtn" class="btn btn-sm btn-primary">수정</button>
-						<input type="hidden" name="command" value="DeleteReply">
-						<input type="hidden" name="pno" value="${postVO.pNo}">		
-						<button type="submit" class="btn btn-sm btn-danger">삭제</button>
-				</c:if>
-			</div> <!-- text-center -->
-		</div> <!-- panel-footer -->
-	</div> <!-- panel panel-info (replyViewForm) -->
-</form>
-</div>
+		</div> <!-- text-center -->
+		<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
+			<div class="panel panel-info" id="replyViewForm" data-effect="helix">
+				<div class="panel-heading">
+					답글
+				</div> <!-- panel-heading -->
+				<div class="panel-body">
+					<table class="table table-striped">
+							<thead>
+								<tr>
+									<td>제목 : ${postVO.answerVO.aTitle}</td>
+									<td>작성시간 : ${postVO.answerVO.aDate}</td>
+								</tr>
+							</thead>
+						</table>
+					<div class="alert alert-info" style="white-space: pre-wrap;">${postVO.answerVO.aContent}</div>
+				</div>
+				<div class="panel-footer">
+					<div class="text-center">
+						<c:if test="${userVO.grade == 'a' }">
+							<button type="button" id="updateReplyBtn" class="btn btn-sm btn-primary">수정</button>
+								<input type="hidden" name="command" value="DeleteReply">
+								<input type="hidden" name="pno" value="${postVO.pNo}">		
+								<button type="submit" class="btn btn-sm btn-danger">삭제</button>
+						</c:if>
+					</div> <!-- text-center -->
+				</div> <!-- panel-footer -->
+			</div> <!-- panel panel-info (replyViewForm) -->
+		</form>
+	</div>
 </div>
 <br>
 
@@ -92,88 +92,3 @@
 		<c:import url="/reply/updateReply.jsp"/>
 	</div>
 </div>
-<script type="text/javascript">
-	var flag='view';
-	$("#updateView").hide();
-	$(document).ready(function() {
-		$("#replyViewForm").hide(); // 답글달기뷰 숨기기
-		$("#replyWriteForm").hide(); // 답글쓰기뷰 숨기기 
-		$("#updateReplyForm").hide() // 답글수정뷰 숨기기
-		
-		$("#replyViewBtn").click(function() { // 답글보기버튼을 클릭할때
-			$("#replyViewBtn").hide(); // 답글보기버튼 숨기기
-			$("#replyViewForm").show(); // 답글보기뷰 보여주기
-			$("#replyViewForm").addClass("animated pulse"); // 답글달기뷰 보여주면서 애니메이션
-		});
-		
-	/* 	$("#cancelReplyBtn").click(function() {
-			$("#replyViewForm").hide();
-			$("#replyViewBtn").show();
-		}); */
-		
-		$("#replyWriteBtn").click(function() { // 답글쓰기버튼 클릭할 때
-			$("#replyWriteBtn").hide(); // 답글쓰기버튼 숨기기
-			$("#replyWriteForm").show(); // 답글쓰기뷰 보여주기
-			$("#replyWriteForm").addClass("animated fadeInUp"); // 답글쓰기뷰 보여주면서 애니메이션
-		});
-		
-		$("#updateReplyBtn").click(function() { // 답글수정 버튼 클릭할 때 
-			$("#replyViewForm").hide(); // 답글보기뷰 숨기기
-			$("#updateReplyForm").show(); // 답글수정뷰 보여주기
-			$("#updateReplyForm").addClass("animated fadeIn"); // 답글수정뷰 보여주면서 애니메이션
-		});
-		
-		$("#btnReplyCancel").click(function() { // 답글수정취소 버튼 클릭할 때
-			$("#replyViewForm").show(); // 답글보기뷰 보여주기
-			$("#updateReplyForm").hide(); // 답글수정뷰 숨기기
-		});
-		
-		$("#update-cancel").click(function() {
-			if(flag=='view'){//flag가 view일 때 수정/수정취소 버튼을 누르면 수정폼으로 전환
-				$("#togglebarName").text("답글 수정");
-				$("#update-cancel").text("수정 취소");
-				$("#delete-save").val("저장");
-				$("#replyView").hide();
-				$("#updateView").show();
-				flag='update';
-			}else{//flag가 update일 때 수정/수정취소 버튼을 누르면 답글뷰(삭제폼)으로 전환
-				$("#togglebarName").text("답글 보기");
-				$("#update-cancel").text("수정");
-				$("#delete-save").val("삭제");
-				$("#replyView").show();
-				$("#updateView").hide();
-				flag='view';
-			}
-			
-			
-		})
-	})//ready
-	
-
-	function deleteConfirm() {
-		var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
-		confirmModal("게시글을 삭제하시겠습니까?",url,"danger")
-	}
-	function updateConfirm() {
-		var url = "${pageContext.request.contextPath}/dispatcher?command=UpdatePostView&pNo=${requestScope.postVO.pNo}";
-		confirmModal("게시글을 수정하시겠습니까?",url,"success")
-	}
-	
-	function confirmModal(msg,url,css) {
-		BootstrapDialog.confirm({
-			title : "<i class='fas fa-check-circle'></i> 알림",
-            message: msg,
-            type : "type-"+css,
-            btnCancelLabel: '취소', 
-            btnOKLabel: '확인', 
-            btnOKClass: 'btn-'+css,
-            callback: function(result) {
-                if(result) {
-                    location.href = url;
-                }else {
-                	
-                }
-            }
-        });
-	}
-</script>

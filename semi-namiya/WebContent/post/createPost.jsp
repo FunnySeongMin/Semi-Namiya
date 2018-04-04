@@ -54,15 +54,4 @@ var elem = document .querySelector ( ' .js-switch ');
 //switchery 버튼 사이즈 small, 배경색 #008299으로 설정
 var switchery = new Switchery(elem, { size: 'small', color: '#008299' });
 //버튼 누를 때마다 p_lock 값 바꾸기 위한 function
-$(document).ready(function(){
-	$(".js-switch").change(function(){
-		//checked 되어 있을 때 p_lock 값을 "y"로
-		if($(".js-switch").prop("checked")){
-			$("#p_lock").val("y")
-		}else{ 
-			//checked 안 되어있을 때 p_lock 값을 "n"으로
-			$("#p_lock").val("n")
-		}
-	});
-}); 
 </script>

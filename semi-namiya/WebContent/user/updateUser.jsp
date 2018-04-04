@@ -59,63 +59,6 @@
 </div>
 <script>
 	$(document).ready(function() {
-		$("#updateForm").submit(function() {
-			var flag = false;
-			if($("#nick").val().length == 0){ 
-				alertModal("닉네임을 입력해주세요.")
-			} else if($("#password1").val() != $("#password2").val()){
-				alertModal("비밀번호가 일치하지 않습니다.")
-			} else if($("#password1").val().length == 0){
-				alertModal("비밀번호를 입력해주세요")
-			} else {
-				flag = true;
-			}
-			return flag;
-		})
 		
-		$("#delBtn").click(function() {
-			/* location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser&id=${userVO.id }"; */
-			BootstrapDialog.show({
-				type : "type-danger",
-				title : "<i class='fas fa-exclamation-circle'></i> 알림",
-				message : "정말로 회원탈퇴 하시겠습니까?",
-				closable : false,
-				onhidden : function(dialogRef) {
-					location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser";
-				},
-				buttons : [ {
-					label : "확인",
-					cssClass : "btn-danger",
-					hotkey : 13,
-					action : function(cancel) {
-						cancel.close();
-					}
-				},{
-					label : "취소",
-					hotkey : 27,
-					action : function(cancel) {
-						location.href = "${pageContext.request.contextPath}/index.jsp";
-						cancel.close();
-					}
-				} ]
-			}); // BootstrapDialog.show
-		}); // click;
-		
-	
-	function alertModal(msg) {
-		BootstrapDialog .show({
-			type : "type-danger",
-			title : "<i class='fas fa-exclamation-circle'></i> 알림",
-			message : msg,
-			closable : false,
-			buttons : [ {
-				label : "확인",
-				hotkey : 13,
-				action : function(cancel) {
-					cancel.close();
-				}
-			} ]
-		});
-	}
 }); // ready;
 </script>

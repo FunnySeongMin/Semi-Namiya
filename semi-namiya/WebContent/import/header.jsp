@@ -18,7 +18,6 @@
 		</ul> <!-- nav navbar-nav -->
 		
 		
-		
 		<!-- 헤더 오른쪽메뉴 설정 -->
 		<!-- 회원/관리자/비회원 상태에 따라 헤더 메뉴 전환 -->
 		<c:choose>
@@ -68,17 +67,6 @@
 		</c:choose>
 	</div> <!-- container-fluid -->
 </nav> <!-- navbar navbar-inverse -->
-<script>
-$(document).ready(function() {
-	
-	// 애니메이션 추가
-	$("#home, #mypage, #loginModal, #joinModal, #logoutModal, #adminModal").hover(function() {
-		$(this).prop("class","animated bounceIn");
-	}, function() {
-		$(this).prop("class","");
-	})
-})
-</script>
 
 <!-- LoginModal -->
 <c:import url="/import/loginModal.jsp"/>

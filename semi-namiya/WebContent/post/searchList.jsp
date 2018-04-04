@@ -92,10 +92,9 @@ a.post {
 			</ul>
 		</div>
 		
-<!-- 검색폼 -->
-<%-- 		<form name="searchForm" action="${pageContext.request.contextPath}/dispatcher"> 
+			<!-- 검색폼 -->
+			<%--<form name="searchForm" action="${pageContext.request.contextPath}/dispatcher"> 
 			폼 설정하면 검색폼 모양 흐트러짐 주의!!!
-			
 			 --%>
 		<input type="text" class="form-control" id="keyword" name="keyword">
 		<span class="input-group-btn">
@@ -106,19 +105,6 @@ a.post {
 		<input type="hidden" name="command" value="Search">
 		<input type="hidden" name="category" value="제목">
 	</div>
-
-	<script>
-		$(document).ready(function() {
-			var category="제목";//검색 카테고리 기본 설정은 "제목"
-			$("#findMenu li").click(function() { //검색 카테고리 설정
-				 $("#menuBtn").html($(this).text()+ ' <span class="caret"></span>'); 
-				 category = $(this).text(); 
-				});
-			$("#findBtn").click(function(){ //돋보기 아이콘 눌렀을 때 이동!
-				location.href="${pageContext.request.contextPath}/dispatcher?command=Search&category="+category+"&keyword="+$("#keyword").val();
-			})
-			});
-	</script>
 
 	<!-- 페이징버튼 -->
 	<ul class="pagination pagination">

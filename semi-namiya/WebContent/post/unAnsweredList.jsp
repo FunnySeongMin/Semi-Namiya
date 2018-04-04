@@ -6,8 +6,8 @@
 a.post {
 	text-decoration: none;
 	color: black;
-}
-</style>
+}</style>
+
 <div class="row img">
 	<div class="col-sm-offset-1 col-sm-9 text-center text-center animated flipInX">
 		<img src="assets/img/board.jpg">

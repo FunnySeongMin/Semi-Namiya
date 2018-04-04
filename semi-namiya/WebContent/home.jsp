@@ -44,6 +44,7 @@
 <script src="assets/js/typeahead.min.js"></script>
 <!-- emailJS -->
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
 <title>Namiya</title>
 </head>
 <body>

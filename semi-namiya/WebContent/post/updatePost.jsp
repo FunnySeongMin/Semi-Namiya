@@ -57,17 +57,6 @@
 	</form>
 </div>
 <script type="text/javascript"> 
-$(document).ready(function(){
-	$(".js-switch").change(function(){
-		//checked 되어 있을 때 p_lock 값을 "y"로
-		if($(".js-switch").prop("checked")){
-			$("#p_lock").val("y")
-		}else{ 
-			//checked 안 되어있을 때 p_lock 값을 "n"으로
-			$("#p_lock").val("n")
-		}
-	});
-});
 var elem = document .querySelector ( ' .js-switch ');
 var switchery = new Switchery(elem, { size: 'small', color: '#008299' });
 </script>
