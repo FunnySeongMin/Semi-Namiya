@@ -28,7 +28,11 @@ public class ReadPostInfoController implements Controller {
 				NamiyaAnswerVO aVO=NamiyaDAO.getInstance().readReply(pno);
 				postVO.setAnswerVO(aVO);
 				if(postVO.getUserVO().getId().equals(vo.getId())&&aVO.getReadRe()==0) {
+					//답글 읽음으로 처리
 					NamiyaDAO.getInstance().readComment(pno);
+					//읽지 않은 답글수 다시 담기
+					int count = NamiyaDAO.getInstance().getUnreadAnswerCount(vo.getId());
+					session.setAttribute("unreadCount", count);
 				}
 			}
 			//비밀글 여부
