@@ -17,7 +17,6 @@ public class UpdateUserController implements Controller {
 		if (session == null || session.getAttribute("userVO")==null) {
 			return "redirect:index.jsp";
 		}else {
-			System.out.println(session.getAttribute("userVO"));
 			NamiyaUserVO userVO = (NamiyaUserVO) session.getAttribute("userVO"); // 로그인한 세션정보 가져오기 
 			String nickName = request.getParameter("nickName"); // 수정폼에서 수정한 닉네임
 			String password = request.getParameter("password"); // 수정폼에서 수정한 패스워드

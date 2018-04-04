@@ -6,7 +6,7 @@ public class PagingBean {
 	//페이지당 게시물 수
 	private int postCountPerPage=10;
 	//페이지 그룹당 페이지 수
-	private int pageCountPerPageGroup=10;
+	private int pageCountPerPageGroup=5;
 	//저장된 총 게시물 수
 	private int totalPostCount;
 	public PagingBean() {
