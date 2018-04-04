@@ -331,14 +331,15 @@ $(document).ready(function() {
 			}
 		});
 		
-		function deleteConfirm() {
+		$("#deleteConfirm").click(function() {
 			var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
 			confirmModal("게시글을 삭제하시겠습니까?",url,"danger")
-		}
-		function updateConfirm() {
+		});
+		
+		$("#updateConfirm").click(function() {
 			var url = "${pageContext.request.contextPath}/dispatcher?command=UpdatePostView&pNo=${requestScope.postVO.pNo}";
 			confirmModal("게시글을 수정하시겠습니까?",url,"success")
-		}
+		});
 		
 		function confirmModal(msg,url,css) {
 			BootstrapDialog.confirm({

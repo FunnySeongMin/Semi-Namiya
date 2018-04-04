@@ -26,8 +26,8 @@
 			</div>
 			<div class="panel-footer text-center">
 				<c:if test="${requestScope.postVO.userVO.id==sessionScope.userVO.id}">
-					<button type="button" class="btn btn-sm btn-danger" onclick="deleteConfirm()">삭제</button>
-					<button type="button" class="btn btn-sm btn-primary" onclick="updateConfirm()">수정</button>
+					<button type="button" class="btn btn-sm btn-danger" id="deleteConfirm">삭제</button>
+					<button type="button" class="btn btn-sm btn-primary" id="updateConfirm">수정</button>
 					<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadPostList'">목록</button>
 				</c:if>
 			</div>
