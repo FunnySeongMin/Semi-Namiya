@@ -24,9 +24,11 @@
 		<c:when test="${!empty userVO && userVO.grade=='m'}"><!-- 회원일 경우 -->
 			<ul class="nav navbar-nav navbar-right">
 			<li id="headerName" class="navbar-brand">${userVO.nickName}님</li>
+			<!-- 알람 -->
+			<li><a href="#"><i class="fas fa-bell"></i><span class="badge">12</span></a></li>
 			<!-- 드랍다운메뉴 설정 -->
 			<li class="dropdown">
-			<a href="#"  id="mypage" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>마이페이지 <b class="caret"></b></a>
+			<a href="#"  id="mypage" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> 마이페이지 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/dispatcher?command=UpdateUserView">개인정보 수정</a></li>
 						<li><a href="${pageContext.request.contextPath}/dispatcher?command=ReadMyPostList">내상담목록</a></li>
@@ -44,7 +46,7 @@
 			<li class="navbar-brand">${userVO.nickName}님</li>
 			<!-- 드랍다운메뉴 설정 -->
 			<li class="dropdown">
-			<a id="adminModal" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i>관리자 페이지 <b class="caret"></b></a>
+			<a id="adminModal" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> 관리자 페이지 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/dispatcher?command=UnansweredList">답변없는 게시글 목록</a></li>
 						<li><a href="${pageContext.request.contextPath}/dispatcher?command=AdminPage">회원 관리</a></li>
@@ -54,7 +56,7 @@
 						<li><a href="#">One more separated link</a></li> -->
 					</ul> <!-- dropdown-menu -->
 			</li> <!-- dropdown -->
-			<li><a id="logoutModal" href="${pageContext.request.contextPath}/dispatcher?command=Logout"><span class="fas fa-sign-out-alt fa-lg"></span>로그아웃</a></li>
+			<li><a id="logoutModal" href="${pageContext.request.contextPath}/dispatcher?command=Logout"><span class="fas fa-sign-out-alt fa-lg"></span> 로그아웃</a></li>
 			</ul> <!-- nav navbar-nav navbar-right -->
 		</c:when>
 		<c:otherwise><!-- 비회원일 경우(비로그인 상태) -->
