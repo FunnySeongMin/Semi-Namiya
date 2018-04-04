@@ -54,64 +54,64 @@
 <script src="assets/js/typeahead.min.js"></script>
 <!-- switchery -->
 <script src="assets/js/switchery.js"></script>
-<title>Insert title here</title>
+<title>updatePost</title>
 </head>
-
 <body>
-	<form action="${pageContext.request.contextPath}/dispatcher" method="post">
+<!-- 글쓰기폼 -->
+<p style="height: 100px;"></p>
+<div class="col-sm-offset-2 col-sm-7 animated fadeInDown">
+	<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
+	
 		<input type="hidden" name="command" value="UpdatePost"> 
 		<input type="hidden" name="pNo" value="${requestScope.postVO.pNo}">
 		<input type="hidden" id="p_lock" name="p_lock" value="${requestScope.postVO.lock }">
-		<table class="table">
-			<tr>
-				<td>제목&nbsp;&nbsp; <input type="text" name="pTitle"
-					value="${requestScope.postVO.pTitle}" required="required">
-				</td>
-			</tr>
-			<tr>
-				<td><pre>   
-     <textarea cols="90" rows="15" name="pContent" required="required">${requestScope.postVO.pContent}</textarea>
-     </pre></td>
-			</tr>
-		</table>
-
-		<!-- 공개/비공개 설정 수정을 위한 체크박스 -->
-		<c:choose>
-		<c:when test="${postVO.lock=='y'}">
-		비공개 설정 <input type="checkbox" class="js-switch" checked/>
-		</c:when>
-		<c:otherwise>
-		비공개 설정 <input type="checkbox" class="js-switch"/>
-		</c:otherwise>
-		</c:choose>
-
-		<%-- 공개/비공개 글 설정:: 둘 중 하나를 무조건 선택해야 하고 
-하나만 선택 가능하게 하기 위해 RADIO BUTTON 이용함! 디폴트는 공개
-    비공개 글 설정 여부
-<c:choose>
-<c:when test="${requestScope.postVO.lock='n'}">
-<INPUT type="radio" name="pLock" value="n" checked>공개
-<INPUT type="radio" name="pLock" value="y">비공개
-</c:when>
-<c:otherwise>
-<INPUT type="radio" name="pLock" value="n" >공개
-<INPUT type="radio" name="pLock" value="y" checked>비공개
-</c:otherwise>
-</c:choose> --%>
-		<br> <br>
-
-		<!-- 등록 취소 버튼 -->
-		<div class="btnArea">
-			<button type="submit" class="btn btn-sm btn-default">등록</button>
-			<button type="button" class="btn btn-sm btn-default"
-				onclick="location.href='dispatcher?command=ReadPostList'">취소</button>
+		
+		<div class="panel panel-primary" id="panels" data-effect="helix">
+			<div class="panel-heading">
+				<span>글쓰기</span>
+			</div> <!-- panel-heading -->
+			<div class="panel-body">
+			
+					<!-- 제목 -->
+					<div class="form-group">
+						<label for="inputEmail" class="col-sm-3 control-label">제목</label>
+						<div class="col-sm-6 input-group"> 
+							<input type="text" class="form-control" name="pTitle" placeholder="게시글 제목을 입력하세요" required value="${requestScope.postVO.pTitle}">
+						</div> 
+						<br>
+						<!-- 글내용 -->
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8 input-group">
+								<textarea class="form-control" rows="10" cols="30" name="pContent" required placeholder="본문내용을 입력해주세요">${requestScope.postVO.pContent}</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8 input-group">
+								<!-- 공개/비공개 설정 수정을 위한 체크박스 -->
+								<c:choose>
+									<c:when test="${postVO.lock=='y'}">
+										<input type="checkbox" class="js-switch" checked /> <strong class="text-primary"> 비공개설정 </strong>
+									</c:when>
+									<c:otherwise>
+										<input type="checkbox" class="js-switch" /> <strong class="text-primary"> 비공개설정 </strong>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</div> <!-- form-group -->
+					
+					<!-- form-group -->
+			
+				<!-- form-horizontal -->
+			</div>
+		</div>
+		<div class="panel-footer text-center">
+			<button type="submit" class="btn btn-sm btn-primary">등록</button>
+			<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadPostList'">취소</button>
 		</div>
 	</form>
+</div>
 </body>
-
-<!-- 글 수정 시 공개글/비공개글 설정 유지를 위한 javascript 
-	  postVO의 lock값을 받아와서 y로 설정된 경우 true
-	  n으로 설정된 경우 false를 주어 유지시킨다-->
 <script type="text/javascript"> 
 $(document).ready(function(){
 	$(".js-switch").change(function(){
