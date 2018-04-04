@@ -11,4 +11,4 @@ INSERT INTO namiya_user (id, password, nickname , grade )
 VALUES('moon-over@naver.com','123','NM편지쓰는고양이','a'); 
 
 INSERT INTO namiya_user (id, password, nickname , grade ) 
-VALUES('cloudysunny@gamil.com','123','NM고독한 뚠뚠까치','a'); 
+VALUES('cloudysunny@gmail.com','123','NM고독한 뚠뚠까치','a'); 
