@@ -69,6 +69,7 @@ public class NamiyaDAO {
 			con = dataSource.getConnection();
 			sql = "UPDATE namiya_post SET reply = 1 WHERE p_no = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, answerVO.getpNo());
 			pstmt.executeUpdate();
 			pstmt.close();
 			sql = "insert into namiya_answer(p_no,a_title,a_content) valuse(?,?,?)";

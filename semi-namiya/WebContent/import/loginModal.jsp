@@ -231,6 +231,9 @@
 				//alert("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.");
 				//$("#signup-password2").focus();
 				return false;
+			}else if($("#signup-username").val().toUpperCase().startsWith("NM",0)){
+				failMessage("닉네임 앞에는 GM을 붙일 수 없습니다!!","#signup-username");
+				return false;
 			}else{
 				return true;
 			}
