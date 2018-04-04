@@ -14,22 +14,30 @@ public class ReadPostInfoController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//글번호에 맞는 게시글의 내용 뽑아내기
+		String url=null;
 		HttpSession session = request.getSession(false);
 		NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
 		if(session==null|| vo==null) {
-			return "redirect:index.jsp";
+			url="redirect:index.jsp";
 		}else {
 			int pno=Integer.parseInt(request.getParameter("pNo"));
 			NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
-			if(postVO.getLock().equals("y")&&!vo.getGrade().equals("a")) {
-				return "redirect:index.jsp";
-			}else if(postVO.getReply()==1) {
+			if(postVO.getReply()==1) {
 				postVO.setAnswerVO(NamiyaDAO.getInstance().readReply(pno));
 			}
-			request.setAttribute("postVO", postVO);
-			request.setAttribute("url", "/post/readPostInfo.jsp");
-			return "home.jsp";
+			if(postVO.getLock().equals("y")&&vo.getId().equals(postVO.getUserVO().getId())) {
+				request.setAttribute("postVO", postVO);
+				request.setAttribute("url", "/post/readPostInfo.jsp");
+				url="home.jsp";
+			}else if(postVO.getLock().equals("y")&&vo.getGrade().equals("a")) {
+				request.setAttribute("postVO", postVO);
+				request.setAttribute("url", "/post/readPostInfo.jsp");
+				url="home.jsp";
+			}else if(postVO.getLock().equals("y")&&!vo.getGrade().equals("a")) {
+				url="redirect:index.jsp";
+			}
 		}
+		return url;
 	}
 
 }
