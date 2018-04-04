@@ -5,7 +5,7 @@ public class NamiyaAnswerVO {
 	private String aTitle;
 	private String aContent;
 	private String aDate;
-	private String readRe;
+	private int readRe;
 	
 	//등록시 사용하는 생성자
 	public NamiyaAnswerVO(int pNo ,String aTitle, String aContent) {
@@ -15,7 +15,7 @@ public class NamiyaAnswerVO {
 		this.aContent = aContent;
 	}
 	//view에 구현할때 사용하는 생성자
-	public NamiyaAnswerVO(int pNo, String aTitle, String aContent, String aDate, String readRe) {
+	public NamiyaAnswerVO(int pNo, String aTitle, String aContent, String aDate, int readRe) {
 		super();
 		this.pNo = pNo;
 		this.aTitle = aTitle;
@@ -51,10 +51,10 @@ public class NamiyaAnswerVO {
 	public void setaDate(String aDate) {
 		this.aDate = aDate;
 	}
-	public String getReadRe() {
+	public int getReadRe() {
 		return readRe;
 	}
-	public void setReadRe(String readRe) {
+	public void setReadRe(int readRe) {
 		this.readRe = readRe;
 	}
 }

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.namiya.controller.Controller;
+import com.namiya.model.NamiyaAnswerVO;
 import com.namiya.model.NamiyaDAO;
 import com.namiya.model.NamiyaPostVO;
 import com.namiya.model.NamiyaUserVO;
@@ -17,14 +18,20 @@ public class ReadPostInfoController implements Controller {
 		String url=null;
 		HttpSession session = request.getSession(false);
 		NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
-		if(session==null|| vo==null) {
+		int pno=Integer.parseInt(request.getParameter("pNo"));
+		if(session==null|| vo==null) {//회원 비회원 체크
 			url="redirect:index.jsp";
 		}else {
-			int pno=Integer.parseInt(request.getParameter("pNo"));
 			NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
+			//댓글 
 			if(postVO.getReply()==1) {
-				postVO.setAnswerVO(NamiyaDAO.getInstance().readReply(pno));
+				NamiyaAnswerVO aVO=NamiyaDAO.getInstance().readReply(pno);
+				postVO.setAnswerVO(aVO);
+				if(postVO.getUserVO().getId().equals(vo.getId())&&aVO.getReadRe()==0) {
+					NamiyaDAO.getInstance().readComment(pno);
+				}
 			}
+			//비밀글 여부
 			if(postVO.getLock().equals("y")&&vo.getId().equals(postVO.getUserVO().getId())) {
 				request.setAttribute("postVO", postVO);
 				request.setAttribute("url", "/post/readPostInfo.jsp");
