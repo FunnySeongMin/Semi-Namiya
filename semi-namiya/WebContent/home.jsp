@@ -60,7 +60,7 @@
 			</div> <!-- col-sm-offset-2 col-sm-8 -->
 			
 			<!-- 광고 -->
-			<div class="col-sm-2">
+			<div id="scrolladv" class="col-sm-2">
 				<!-- <p style="height: 200px;"></p> -->
 				<a href="#" id="adv"><img src="" title="이동?"></a>
 			</div>
@@ -103,6 +103,21 @@ $(document).ready(function() {
 		var randomNum = Math.ceil(Math.random() * num);
 		return randomNum;
 	}
-})
+	var floatPosition = parseInt($("#scrolladv").css('top'));
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+ 		var newPosition = scrollTop;
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
+ 
+		$("#scrolladv").stop().animate({
+			"top" : newPosition
+		}, 500);
+ 
+	}).scroll();
+ 
+	}); //ready
 </script>
 </html>

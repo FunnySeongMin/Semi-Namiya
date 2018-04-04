@@ -2,11 +2,16 @@
 	pageEncoding="UTF-8"%>
 <!-- <embed src="import/나미야잡화점의기적.mp3" autostart="true" loop="true" width="280" 
 		height="45" volume="100"> -->
-<audio loop autoplay="autoplay" hidden="true" preload="none">
-	<source src="import/나미야 나나나.mp3" type="audio/mpeg">
+<audio id="namiyaAudio" loop autoplay="autoplay" hidden="true" preload="none" >
+	<!-- <source src="import/나미야 나나나.mp3" type="audio/mpeg"> -->
+	<source src="import/나미야잡화점의기적.mp3" type="audio/mpeg">
 </audio>
 <script>
 $(document).ready(function() {
+	// 오디오 볼륨
+	var vol= document.getElementById("namiyaAudio");
+	vol.volume=1.0;
+	
 	// 애니메이션 추가
 	$("#home, #mypage, #loginModal, #joinModal, #logoutModal, #adminModal").hover(function() {
 		$(this).prop("class","animated bounceIn");
