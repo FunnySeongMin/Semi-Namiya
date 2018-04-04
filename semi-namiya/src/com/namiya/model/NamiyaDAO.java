@@ -184,7 +184,7 @@ public class NamiyaDAO {
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -623,4 +623,19 @@ public class NamiyaDAO {
 		}
 		return count;
 	}// method
+	
+	//댓글 읽음 여부 확인
+	public void readComment(int pNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="UPDATE namiya_answer SET readRe = '1' WHERE  p_no = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}//method
 }
