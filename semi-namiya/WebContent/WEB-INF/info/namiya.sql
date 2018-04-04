@@ -8,6 +8,9 @@ CREATE TABLE namiya_user (
    grade VARCHAR2(1) DEFAULT 'm' -- 회원상태 여부. 회원:m, 관리자:a, 탈퇴한회원:d 
 );
 
+-- 답변 읽었는지
+ALTER TABLE namiya_answer ADD (readRe NUMBER DEFAULT 0)
+select * from namiya_answer
 
 -- 게시판 테이블
 DROP TABLE namiya_post;
@@ -127,3 +130,7 @@ to_char(p_date,'yyyy.mm.dd') p_date from namiya_post n, namiya_user u
 where n.id=u.id and u.nickname = '꾸꾸' ) p,
 namiya_user u where p.id=u.id and rnum
 between 1 and 30 order by p_no desc
+
+-- 답변 읽었는지
+ALTER TABLE namiya_answer ADD (readRe NUMBER DEFAULT 0) -- 안 읽으면 0 읽으면 1로 update
+select * from namiya_answer

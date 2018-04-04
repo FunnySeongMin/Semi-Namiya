@@ -178,13 +178,13 @@ public class NamiyaDAO {
 		NamiyaAnswerVO vo = new NamiyaAnswerVO();
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT a.p_no, a.a_title, a.a_content, to_char(a.a_date,'yyyy.mm.dd')"
+			String sql = "SELECT a.p_no, a.a_title, a.a_content, to_char(a.a_date,'yyyy.mm.dd'), a.readRe"
 					+ " FROM namiya_answer a, namiya_post p" + " WHERE a.p_no = p.p_no and a.p_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
