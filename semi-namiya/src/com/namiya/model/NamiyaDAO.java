@@ -178,13 +178,13 @@ public class NamiyaDAO {
 		NamiyaAnswerVO vo = new NamiyaAnswerVO();
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT a.p_no, a.a_title, a.a_content, to_char(a.a_date,'yyyy.mm.dd')"
+			String sql = "SELECT a.p_no, a.a_title, a.a_content, to_char(a.a_date,'yyyy.mm.dd'), a.readRe"
 					+ " FROM namiya_answer a, namiya_post p" + " WHERE a.p_no = p.p_no and a.p_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -598,4 +598,29 @@ public class NamiyaDAO {
 		}
 		return count;
 	}
+	
+	//알림 관련 
+	public int getUnreadAnswerCount(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count=0;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) ");
+			sql.append("from (select p_no, p.id from namiya_post p, namiya_user u ");
+			sql.append("where p.id=u.id and u.id = ? ) p, ");
+			sql.append("namiya_answer a where p.p_no = a.p_no and a.readRe=0");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}// method
 }
