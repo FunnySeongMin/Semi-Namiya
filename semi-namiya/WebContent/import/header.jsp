@@ -14,6 +14,7 @@
 		<!-- 헤더 메뉴설정 -->
 		<ul class="nav navbar-nav">
 			<li><a id="home" href="index.jsp"><i class="fas fa-home"></i> Home</a></li> 
+			<li><a href="${pageContext.request.contextPath }/dispatcher?command=Intro"><i class="fas fa-info-circle"></i> 소개</a></li> 
 			<!-- <li class="active"><a href="#">Link</a></li> -->
 		</ul> <!-- nav navbar-nav -->
 		
@@ -23,7 +24,7 @@
 		<c:choose>
 		<c:when test="${!empty userVO && userVO.grade=='m'}"><!-- 회원일 경우 -->
 			<ul class="nav navbar-nav navbar-right">
-			<li id="headerName" class="navbar-brand">${userVO.nickName}님</li>
+			<li id="headerName" class="navbar-brand"><i class="fas fa-user-circle"></i> ${userVO.nickName}님</li>
 			<!-- 알람 -->
 			<li><a href="#"><i class="fas fa-bell"></i><span class="badge">12</span></a></li>
 			<!-- 드랍다운메뉴 설정 -->

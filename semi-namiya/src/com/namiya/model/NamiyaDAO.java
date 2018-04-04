@@ -184,7 +184,7 @@ public class NamiyaDAO {
 			pstmt.setInt(1, pno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+				vo = new NamiyaAnswerVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -598,6 +598,31 @@ public class NamiyaDAO {
 		}
 		return count;
 	}
+	
+	//알림 관련 
+	public int getUnreadAnswerCount(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count=0;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) ");
+			sql.append("from (select p_no, p.id from namiya_post p, namiya_user u ");
+			sql.append("where p.id=u.id and u.id = ? ) p, ");
+			sql.append("namiya_answer a where p.p_no = a.p_no and a.readRe=0");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
+	}// method
 	
 	//댓글 읽음 여부 확인
 	public void readComment(int pNo) throws SQLException {
