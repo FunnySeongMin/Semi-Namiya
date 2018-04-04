@@ -69,9 +69,10 @@ public class NamiyaDAO {
 			con = dataSource.getConnection();
 			sql = "UPDATE namiya_post SET reply = 1 WHERE p_no = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, answerVO.getpNo());
 			pstmt.executeUpdate();
 			pstmt.close();
-			sql = "insert into namiya_answer(p_no,a_title,a_content) valuse(?,?,?)";
+			sql = "insert into namiya_answer(p_no,a_title,a_content) values(?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, answerVO.getpNo());
 			pstmt.setString(2, answerVO.getaTitle());
@@ -554,7 +555,7 @@ public class NamiyaDAO {
 					count = rs.getInt(1);
 				}
 			} else if (category.equals("작성자")) {
-				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id u.nickname like '%' || ? || '%'";
+				sql = "select count(*) from namiya_post p , namiya_user u where p.id=u.id and u.nickname=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				rs = pstmt.executeQuery();

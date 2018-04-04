@@ -4,7 +4,7 @@ public class PagingBean {
 	//현재 페이지
 	private int nowPage=1;
 	//페이지당 게시물 수
-	private int postCountPerPage=20;
+	private int postCountPerPage=10;
 	//페이지 그룹당 페이지 수
 	private int pageCountPerPageGroup=10;
 	//저장된 총 게시물 수
