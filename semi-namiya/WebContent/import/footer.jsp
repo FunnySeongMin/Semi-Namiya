@@ -13,7 +13,7 @@ $(document).ready(function() {
 	vol.volume=1.0;
 	
 	// 애니메이션 추가
-	$("#home, #mypage, #loginModal, #joinModal, #logoutModal, #adminModal").hover(function() {
+	$("#home, #mypage, #loginModal, #joinModal, #logoutModal, #adminModal, #intro").hover(function() {
 		$(this).prop("class","animated bounceIn");
 	}, function() {
 		$(this).prop("class","");
