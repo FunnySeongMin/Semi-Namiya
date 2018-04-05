@@ -16,7 +16,7 @@
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-3 control-label">제목</label>
 					<div class="col-sm-6 input-group">
-						<input type="text" class="form-control" name="atitle"
+						<input type="text" class="form-control" maxlength="35" name="atitle"
 							placeholder="답글 제목을 입력하세요" required>
 					</div>
 					<br>
