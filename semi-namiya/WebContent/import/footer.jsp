@@ -267,8 +267,12 @@ $(document).ready(function() {
 	      } else if($("#nick").val().toUpperCase().startsWith("NM",0)){
 	         alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
 	         flag=false;
-	      }else if(userNick!=$("#nick").val()&&checkNick($("#nick").val())=="false"){
-	    	  flag=false;
+	      }else if(userNick!=$("#nick").val()){
+	    	  if(checkNick($("#nick").val())=="false"){
+		    	  flag=false;
+	    	  }else{
+	    		  flag=true;
+	    	  }
 	      }
 	      return flag;
 	   });
