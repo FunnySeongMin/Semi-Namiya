@@ -289,7 +289,7 @@ $(document).ready(function() {
 	         alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
 	          return false;
 	      }else if($("#nickHidden").val()=="false"){
-	    	  alertModal("닉네임 중복이다 시발새끼야 좀 나와라 시발")
+	    	  alertModal("닉네임 중복입니다.")
 	    	  return false;
 	      }
 	   });
