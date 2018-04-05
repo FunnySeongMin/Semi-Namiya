@@ -238,7 +238,7 @@ public class NamiyaUserDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String flag=null;
+		String nickname=null;
 		try {
 			con=dataSource.getConnection();
 			String sql="select nickname from namiya_user where nickname=?";
@@ -246,11 +246,11 @@ public class NamiyaUserDAO {
 			pstmt.setString(1, nickName);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				flag=rs.getString(1);
+				nickname=rs.getString(1);
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
-		return flag;
+		return nickname;
 	}
 }
