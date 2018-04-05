@@ -252,7 +252,6 @@ $(document).ready(function() {
 		
 		
 	// 개인정보수정 ---------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
 	//수정폼 닉네임 중복검사
 	$("#nick").keyup(function(){
 		var userNick="${sessionScope.userVO.nickName}";
@@ -277,13 +276,6 @@ $(document).ready(function() {
  	})	; 
 	
 	$("#updateForm").submit(function() {
-	      var changeNick=$("#nick").val();
-=======
-
-	   $("#updateForm").submit(function() {
-	      var userNick="${sessionScope.userVO.nickName}";
-	      var flag=true;
->>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 	      if($("#nick").val().length == 0){ 
 	         alertModal("닉네임을 입력해주세요.")
 	         return false;
@@ -301,29 +293,7 @@ $(document).ready(function() {
 	    	  return false;
 	      }
 	   });
-	   
-<<<<<<< HEAD
-=======
-	   function checkNick(nickName){
-	         $.ajax({
-	            type:"post",
-	            dataType:"json",
-	            url:"dispatcher",
-	            data:"command=CheckNickname&nickname="+nickName,
-	            success:function(data){
-	               if(data.nick=="true"){
-	                  //$("#checkId").html("사용가능!").css("color","blue");
-	                  return "true";
-	               } else {
-	                  //$("#checkId").html("사용불가!").css("color","red");
-	                  return "false";
-	               }
-	            }
-	         })//ajax
-	   }
-
-		
->>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
+	
 	$("#delBtn").click(function() {
 		/* location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser&id=${userVO.id }"; */
 		BootstrapDialog.show({
