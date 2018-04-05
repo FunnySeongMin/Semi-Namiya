@@ -5,15 +5,13 @@
 <div id="myCarouselV" class="carousel thumbnail fade">
 	<div class="carousel-inner">
 		<img src="assets/img/intro.png" align="middle" style="width: 1300px;">
-		<div class="carousel-caption"> 
-			<p class="lead" style="white-space: pre-wrap;">남이야 잡화점은 한국소프트웨어기술진흥협회 웹프로그래밍 개발자 과정 교육생들이<br>
+		<div class="lead text-center" style="white-space: pre-wrap;">남이야 잡화점은 한국소프트웨어기술진흥협회 웹프로그래밍 개발자 과정 교육생들이<br>
 영화<strong class="text-primary"> 『나미야 잡화점의 기적』</strong>을 보고 아이디어를 얻어 세미프로젝트로 만든 사이트로<br>
 영화의 내용처럼 이용자들의 각종 고민을 운영자들이 상담을 해주는 사이트 입니다.<br>
 개발자 과정을 걷고있는 교육생들이 만든 사이트이기 때문에 부족한 부분이 많습니다. <br>
-다소 부족한 부분이 있더라도 양해를 부탁드립니다.</p>
+다소 부족한 부분이 있더라도 양해를 부탁드립니다.</div>
 		</div>
 	</div>
-</div>
 <div class="row">
 	<!-- Slider -->
 	<div class="col-sm-offset-3 col-sm-6">

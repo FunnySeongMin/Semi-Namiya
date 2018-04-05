@@ -12,6 +12,54 @@ $(document).ready(function() {
 	var vol= document.getElementById("namiyaAudio");
 	vol.volume=1.0;
 	
+	// 광고 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+	var num = randomNum(6);
+	$("#adv img").prop("src","adv/"+num+".jpg");
+	// 광고이미지 선택시 url이동
+	switch (num) {
+	case 1:
+		$("#adv").prop("href","http://www.naver.com")
+		break;
+	case 2:
+		$("#adv").prop("href","http://www.google.com")
+		break;
+	case 3:
+		$("#adv").prop("href","http://www.daum.net")
+		break;
+	case 4:
+		$("#adv").prop("href","http://www.nate.com")
+		break;
+	case 5:
+		$("#adv").prop("href","http://www.instagram.com")
+		break;
+	case 6:
+		$("#adv").prop("href","http://www.facebook.com")
+		break;
+	}
+	// 난수만들기
+	function randomNum(num) {
+		var randomNum = Math.ceil(Math.random() * num);
+		return randomNum;
+	}
+	// 광고 끝 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// 스크롤 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+	var floatPosition = parseInt($("#scrolladv").css('top'));
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+ 		var newPosition = scrollTop;
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
+		$("#scrolladv").stop().animate({
+			"top" : newPosition
+		}, 500);
+	}).scroll();
+	// 스크롤 끝--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
 	// 메인 애니메이션 --------------------------------------------------------------------------------------------------------------------
 	// 애니메이션 추가
 	$("#home, #mypage, #loginModal, #joinModal, #logoutModal, #adminModal, #intro").hover(function() {
