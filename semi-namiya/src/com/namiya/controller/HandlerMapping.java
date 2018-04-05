@@ -11,10 +11,8 @@ import com.namiya.controller.post.UpdatePostController;
 import com.namiya.controller.post.UpdatePostViewController;
 import com.namiya.controller.reply.CreateReplyController;
 import com.namiya.controller.reply.DeleteReplyController;
-import com.namiya.controller.reply.ReadReplyController;
 import com.namiya.controller.reply.UnAnsweredListController;
 import com.namiya.controller.reply.UpdateReplyController;
-import com.namiya.controller.reply.UpdateReplyViewController;
 import com.namiya.controller.user.AdminPageController;
 import com.namiya.controller.user.CheckIdController;
 import com.namiya.controller.user.CreateUserController;
@@ -69,14 +67,10 @@ public class HandlerMapping {
 			c=new ReadMyPostListController();
 		}else if(command.equals("ReadPostInfo")) {
 			c=new ReadPostInfoController();
-		}else if(command.equals("ReadReply")) {
-			c=new ReadReplyController();
 		}else if(command.equals("UpdatePost")) {
 			c=new UpdatePostController();
 		}else if(command.equals("UpdatePostView")) {
 			c=new UpdatePostViewController();
-		}else if(command.equals("UpdateReplyView")) {
-			c=new UpdateReplyViewController();
 		}else if(command.equals("UpdateReply")) {
 			c=new UpdateReplyController();
 		}else if(command.equals("DeletePost")) {
