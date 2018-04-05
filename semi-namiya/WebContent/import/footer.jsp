@@ -74,19 +74,19 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://edu.kosta.or.kr/index")
 		break;
 	case 2: // 김유란
-		$("#adv").prop("href","http://192.168.0.184/BBacksToga")
+		$("#adv").prop("href","http://192.168.0.184:8888/BBackYoga")
 		break;
 	case 3: // 류완선
-		$("#adv").prop("href","http://192.168.0.178/KCver01")
+		$("#adv").prop("href","http://192.168.0.178:8888/KCver01")
 		break;
 	case 4: // 용다은
-		$("#adv").prop("href","http://192.168.0.114/albatross")
+		$("#adv").prop("href","http://192.168.0.114:8888/albatross")
 		break;
 	case 5: // 은성민
-		$("#adv").prop("href","http://192.168.0.135/Hue")
+		$("#adv").prop("href","http://192.168.0.135:8888/Hue")
 		break;
 	case 6: // 이상욱
-		$("#adv").prop("href","http://192.168.0.121/semi-namiya")
+		$("#adv").prop("href","http://192.168.0.121:8888/semi-namiya")
 		break;
 	}
 	// 난수만들기
