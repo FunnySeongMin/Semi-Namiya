@@ -23,6 +23,9 @@ public class ReadPostInfoController implements Controller {
 			url="redirect:index.jsp";
 		}else {
 			NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
+			if(postVO == null) {
+				return "accesslimit.jsp";
+			}
 			//댓글 
 			if(postVO.getReply()==1) {
 				NamiyaAnswerVO aVO=NamiyaDAO.getInstance().readReply(pno);
@@ -45,7 +48,7 @@ public class ReadPostInfoController implements Controller {
 				request.setAttribute("url", "/post/readPostInfo.jsp");
 				url="home.jsp";
 			}else if(postVO.getLock().equals("y")&&!vo.getGrade().equals("a")) {
-				url="redirect:index.jsp";
+				url="accesslimit.jsp";
 			}else {
 				request.setAttribute("postVO", postVO);
 				request.setAttribute("url", "/post/readPostInfo.jsp");

@@ -25,6 +25,9 @@ public class UpdatePostViewController implements Controller {
 		postVO = NamiyaDAO.getInstance().readPostInfo(pNo);
 
 		
+		if(postVO == null) {
+			return "accesslimit.jsp";
+		}
 		if(!postVO.getUserVO().getId().equals(userVO.getId())) {
 			return "accesslimit.jsp";
 		}
