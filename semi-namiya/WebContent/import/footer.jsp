@@ -70,23 +70,23 @@ $(document).ready(function() {
 	$("#adv img").prop("src","adv/"+num+".jpg");
 	// 광고이미지 선택시 url이동
 	switch (num) {
-	case 1:
-		$("#adv").prop("href","http://www.naver.com")
+	case 1: // 선생님
+		$("#adv").prop("href","http://edu.kosta.or.kr/index")
 		break;
-	case 2:
-		$("#adv").prop("href","http://www.google.com")
+	case 2: // 김유란
+		$("#adv").prop("href","http://192.168.0.184/BBacksToga")
 		break;
-	case 3:
-		$("#adv").prop("href","http://www.daum.net")
+	case 3: // 류완선
+		$("#adv").prop("href","http://192.168.0.178/KCver01")
 		break;
-	case 4:
-		$("#adv").prop("href","http://www.nate.com")
+	case 4: // 용다은
+		$("#adv").prop("href","http://192.168.0.114/albatross")
 		break;
-	case 5:
-		$("#adv").prop("href","http://www.instagram.com")
+	case 5: // 은성민
+		$("#adv").prop("href","http://192.168.0.135/Hue")
 		break;
-	case 6:
-		$("#adv").prop("href","http://www.facebook.com")
+	case 6: // 이상욱
+		$("#adv").prop("href","http://192.168.0.121/semi-namiya")
 		break;
 	}
 	// 난수만들기
