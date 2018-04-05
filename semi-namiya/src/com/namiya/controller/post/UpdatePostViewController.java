@@ -16,8 +16,9 @@ public class UpdatePostViewController implements Controller {
 		//게시글 수정 form에 postVO의 내용을 넘겨주기 위한 컨트롤러
 		NamiyaPostVO postVO = null;
 		HttpSession session = request.getSession(false);
-		
-		if (session == null || session.getAttribute("userVO") == null) {
+		String id=request.getParameter("uid");
+		NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
+		if (session == null || vo == null||vo.getId()!=id) {
 			return "redirect:index.jsp";
 		}
 		NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
