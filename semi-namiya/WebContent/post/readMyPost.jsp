@@ -21,7 +21,10 @@ a.post {
 	<!-- 나의 게시물 리스트 -->
 	<tbody>
 	<c:forEach var="info" items="${requestScope.listvo.list }">
-		<tr>
+	<c:choose><%--아직 답글을 읽지 않은 게시물은 노란색으로 표시 --%>
+		<c:when test="${info.answerVO.readRe==0}"><tr class="warning"></c:when>
+		<c:otherwise><tr></c:otherwise>
+	</c:choose>
 			<td>${info.pNo}</td>
 			<c:choose><%-- 답변여부 --%>  
 				<c:when test="${info.reply==0 }">				

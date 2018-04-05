@@ -398,7 +398,7 @@ public class NamiyaDAO {
 			sql.append("select p.p_no,p.p_title,p.timeposted,p.p_lock,u.nickname,p.reply ");
 			sql.append("from (select row_number() over(order by p_no desc) as rnum,p_no,p_title,p_lock,reply, ");
 			sql.append("id,to_char(p_date,'yyyy.mm.dd') timeposted from namiya_post where id=?) p ");
-			sql.append(", namiya_user u where u.id=p.id and rnum between ? and ? ");
+			sql.append(", namiya_user u where u.id=p.id and rnum between ? and ? order by p_no desc");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
