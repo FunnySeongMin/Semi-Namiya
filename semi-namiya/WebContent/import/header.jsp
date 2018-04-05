@@ -26,7 +26,16 @@
 			<ul class="nav navbar-nav navbar-right">
 			<li id="headerName" class="navbar-brand"><i class="fas fa-user-circle"></i> ${userVO.nickName}님</li>
 			<!-- 알람 -->
-			<li><a href="${pageContext.request.contextPath}/dispatcher?command=ReadMyPostList"><i class="fas fa-bell"></i><span class="badge">${unreadCount}</span></a></li>
+			<li><a href="${pageContext.request.contextPath}/dispatcher?command=ReadMyPostList"><i class="fas fa-bell"></i>
+			<c:choose><%-- 알림창 색상 변경--%> 
+				<c:when test="${unreadCount==0}">
+					<span class="badge">${unreadCount}</span>
+				</c:when>
+				<c:otherwise>
+					<span class="badge" style="background-color: orangered;">${unreadCount}</span>
+				</c:otherwise>
+			</c:choose>
+			</a></li>
 			<!-- 드랍다운메뉴 설정 -->
 			<li class="dropdown">
 			<a href="#"  id="mypage" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> 마이페이지 <b class="caret"></b></a>
