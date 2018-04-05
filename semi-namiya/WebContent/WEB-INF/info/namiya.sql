@@ -16,7 +16,7 @@ select * from namiya_answer
 DROP TABLE namiya_post;
 CREATE TABLE namiya_post (
     p_no NUMBER PRIMARY KEY, -- 게시글 글번호(시퀀스)
-    p_title VARCHAR2(100) NOT NULL, -- 게시글 제목
+    p_title VARCHAR2(200) NOT NULL, -- 게시글 제목
     p_content CLOB NOT NULL, -- 게시글 글내용
     p_date DATE DEFAULT SYSDATE, -- 게시글 등록일
     p_lock VARCHAR2(1) NOT NULL, -- 게시글공개여부. n:공개, y:비공개
