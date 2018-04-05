@@ -14,12 +14,10 @@ public class CheckNicknameController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String nickName=request.getParameter("nickname");
 		String check=NamiyaUserDAO.getInstance().checkNickname(nickName);
-		JSONObject json=null;
+		JSONObject json=new JSONObject();
 		if(check!=null) {
-			json=new JSONObject();
 			json.put("nick","false");
 		}else {
-			json=new JSONObject();
 			json.put("nick", "true");
 		}
 		request.setAttribute("responseBody", json);

@@ -252,47 +252,48 @@ $(document).ready(function() {
 		
 		
 	// 개인정보수정 ---------------------------------------------------------------------------------------------------
-
-	   $("#updateForm").submit(function() {
-	      var userNick="${sessionScope.userVO.nickName}";
-	      var flag=true;
+	//수정폼 닉네임 중복검사
+	$("#nick").keyup(function(){
+		var userNick="${sessionScope.userVO.nickName}";
+		var changeNick=$(this).val();
+		if(userNick!=changeNick){
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"dispatcher",
+				data:"command=CheckNickname&nickname="+changeNick,
+				success:function(data){
+					if(data.nick=="true"){
+						$("#nickHidden").prop("value","true");
+					}else {
+						$("#nickHidden").prop("value","false");
+					}
+				}
+			})//ajax
+		}else{
+			$("#nickHidden").prop("value","true");
+		}
+ 	})	; 
+	
+	$("#updateForm").submit(function() {
 	      if($("#nick").val().length == 0){ 
 	         alertModal("닉네임을 입력해주세요.")
-	         flag=false;
+	         return false;
 	      } else if($("#password1").val() != $("#password2").val()){
 	         alertModal("비밀번호가 일치하지 않습니다.")
-	         flag=false;
+	         return false;
 	      } else if($("#password1").val().length == 0){
 	         alertModal("비밀번호를 입력해주세요")
-	         flag=false;
+	         return false;
 	      } else if($("#nick").val().toUpperCase().startsWith("NM",0)){
 	         alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
-	         flag=false;
-	      }else if(userNick!=$("#nick").val()&&checkNick($("#nick").val())=="false"){
-	    	  flag=false;
+	          return false;
+	      }else if($("#nickHidden").val()=="false"){
+	    	  alertModal("닉네임 중복이다 시발새끼야 좀 나와라 시발")
+	    	  return false;
 	      }
-	      return flag;
 	   });
-	   
-	   function checkNick(nickName){
-	         $.ajax({
-	            type:"post",
-	            dataType:"json",
-	            url:"dispatcher",
-	            data:"command=CheckNickname&nickname="+nickName,
-	            success:function(data){
-	               if(data.nick=="true"){
-	                  //$("#checkId").html("사용가능!").css("color","blue");
-	                  return "true";
-	               } else {
-	                  //$("#checkId").html("사용불가!").css("color","red");
-	                  return "false";
-	               }
-	            }
-	         })//ajax
-	   }
-
-		
+	
 	$("#delBtn").click(function() {
 		/* location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser&id=${userVO.id }"; */
 		BootstrapDialog.show({
