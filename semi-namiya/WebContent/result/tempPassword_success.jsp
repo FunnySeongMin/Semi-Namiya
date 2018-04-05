@@ -86,7 +86,7 @@ $(document).ready(function() {
 				"contents":password // 이메일 내용
 			}
 			emailjs.init("user_0CjQxIrj0fRbRXubJes54");
-			emailjs.send("oper37370_gmail_com", "namiyamail", emailC)
+			emailjs.send("oper37370_gmail_com", "NamiyaEmail", emailC)
 			.then(function(response) { // 이메일 발송 성공시
 				console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
 			}, function(err) { //이메일 발송 실패시
