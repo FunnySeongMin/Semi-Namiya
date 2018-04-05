@@ -99,16 +99,16 @@ WHERE u.id = p.id;
 -- **namiya_answer**
 -- 답글 작성 (해당게시글 reply -> 1로 업데이트)
 UPDATE namiya_post SET reply = 1
-WHERE p_no = 1;
-INSERT INTO namiya_answer(p_no, a_title, a_content) 
-VALUES(1, '여기는 제목', '여기는 답글내용');
+WHERE p_no = 12;
+INSERT INTO namiya_answer(p_no, a_title, a_content, readRe) 
+VALUES(12, '여기는 제목', '여기는 답글내용', 1);
 
 -- 답글 수정
 UPDATE namiya_answer SET a_title = '수정된 답글제목', a_content = '수정된 답글내용'
 WHERE p_no = 1;
 
 -- 답글 조회
-SELECT a.p_no, a.a_title, a.a_content, a.a_date 
+SELECT a.p_no, a.a_title, a.a_content, a.a_date, a.readRe, p.id 
 FROM namiya_answer a, namiya_post p
 WHERE a.p_no = p.p_no;
 
