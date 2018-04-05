@@ -23,6 +23,7 @@
 							<span class="input-group-addon"><i class="fas fa-user"></i></span>
 							<input type="text" class="form-control" id="nick" name="nickName" value="${userVO.nickName }"
 								placeholder="닉네임" onkeyup="this.value=this.value.replace(/\s/g,'')">
+							<input id="nickHidden" type="hidden">
 						</div>
 					</div>
 					<div class="form-group">

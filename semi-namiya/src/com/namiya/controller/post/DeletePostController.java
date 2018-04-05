@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import com.namiya.controller.Controller;
 import com.namiya.model.NamiyaDAO;
+import com.namiya.model.NamiyaPostVO;
+import com.namiya.model.NamiyaUserVO;
 
 public class DeletePostController implements Controller {
 
@@ -16,8 +18,16 @@ public class DeletePostController implements Controller {
 		if(session==null||session.getAttribute("userVO")==null){
 			return "redirect:index.jsp";
 		}
+		
 		int pno=Integer.parseInt(request.getParameter("pNo"));
-		NamiyaDAO.getInstance().deletePost(pno);
+		NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
+		NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
+		if(!postVO.getUserVO().getId().equals(userVO.getId())) {
+			System.out.println(postVO.getUserVO().getId());
+			System.out.println(userVO.getId());
+			return "accesslimit.jsp";
+		}
+		NamiyaDAO.getInstance().deletePost(pno, userVO.getId());
 		return "redirect:dispatcher?command=ReadPostList";
 	}
 
