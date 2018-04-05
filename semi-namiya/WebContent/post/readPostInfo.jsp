@@ -93,5 +93,5 @@
 	</div>
 </div>
 <script>
-consol.log(${nowPage});
+
 </script>

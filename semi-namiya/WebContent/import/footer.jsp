@@ -547,7 +547,7 @@ $(document).ready(function() {
 	
 	// 게시글 삭제버튼 클릭시
 	$("#deleteConfirm").click(function() {
-		//var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
+		var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
 		confirmModal("게시글을 삭제하시겠습니까?",url,"danger")
 	});
 	

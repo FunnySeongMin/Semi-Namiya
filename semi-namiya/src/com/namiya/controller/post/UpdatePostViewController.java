@@ -13,17 +13,17 @@ public class UpdatePostViewController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//게시글 수정 form에 postVO의 내용을 넘겨주기 위한 컨트롤러
 		NamiyaPostVO postVO = null;
 		HttpSession session = request.getSession(false);
-		String id=request.getParameter("uid");
-		NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
-		if (session == null || vo == null||vo.getId()!=id) {
+		//String id=request.getParameter("uid");
+		//NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
+		/*if (session == null || vo == null||vo.getId()!=id) {
 			return "redirect:index.jsp";
-		}
+		}*/
 		NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		postVO = NamiyaDAO.getInstance().readPostInfo(pNo);
+		
 		if(!postVO.getUserVO().getId().equals(userVO.getId())) {
 			return "accesslimit.jsp";
 		}
