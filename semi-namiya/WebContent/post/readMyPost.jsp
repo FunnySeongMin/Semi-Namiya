@@ -31,37 +31,17 @@ a.post {
 					<td><span class="label label-success">답변완료</span></td>
 				</c:otherwise>
 			</c:choose><%-- // 답변여부 --%>					
-			<c:choose><%--회원 비회원 구분 --%>
-				<c:when test="${sessionScope.userVO!=null}"><%-- 회원 --%>								
-					<c:choose>	<%-- 공개 비공개 구분 --%>		
-					<c:when test="${info.lock=='y' }"><%--비공개(y) 글보기 --%>					
-						<c:choose><%--비공개글 권한 --%>
-							<c:when test="${sessionScope.userVO.id == info.userVO.id || sessionScope.userVO.grade == 'a'}"><%--관리자이거나 작성자 본인일때 비공개 볼수 있다  --%>							
+			<c:choose>	<%-- 공개 비공개 구분 --%>		
+					<c:when test="${info.lock=='y' }"><%--비공개(y) 글보기 --%>								
 								<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadPostInfo&pNo=${info.pNo}">
 								<i class="fas fa-lock"></i>&nbsp;${info.pTitle }</a></td>
-							</c:when><%--// 관리자이거나 본인일때 비공개 글 볼수있다--%>							
-							<c:otherwise>
-								<td><i class="fas fa-lock"></i>&nbsp;${info.pTitle }</td>
-							</c:otherwise>						
-						</c:choose><%--// 비공개글 권한 --%>
 					</c:when><%--// 비공개(y) 글보기 --%>					
 					<c:otherwise><%--공개글 보기 --%>
 						<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadPostInfo&pNo=${info.pNo}">
 								${info.pTitle }</a></td>
 					</c:otherwise><%-- // 공개글 보기--%>
-					</c:choose><%-- // 공개 비공개 구분 --%>
-				</c:when><%-- // 회원--%>				
-				<c:otherwise><%--비회원 --%>
-				<c:choose>
-				<c:when test="${info.lock=='y' }"><%--비회원의 비공개(y) 링크 보기 --%>
-				<td><i class="fas fa-lock"></i>&nbsp;${info.pTitle }</td>
-				</c:when>
-				<c:otherwise>
-				<td>${info.pTitle }</td>
-				</c:otherwise>
-				</c:choose>
-				</c:otherwise><%-- // 비회원 --%>
-			</c:choose><%-- // 회원 비회원 구분 --%>						
+			</c:choose><%-- // 공개 비공개 구분 --%>
+					
 			<td>${info.userVO.nickName }</td>
 			<td>${info.pDate}</td>
 		</tr>
