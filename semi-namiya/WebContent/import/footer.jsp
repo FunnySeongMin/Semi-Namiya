@@ -90,10 +90,6 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://192.168.0.135:8888/Hue")
 		break;
 	case 6: // 이상욱
-<<<<<<< HEAD
-		$("#adv").prop("href","http://192.168.0.121:8888/semi-namiya")
-=======
->>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 		break;
 	}
 	$("#adv").click(function() {
