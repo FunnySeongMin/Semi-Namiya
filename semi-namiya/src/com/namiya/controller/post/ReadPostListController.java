@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.namiya.controller.Controller;
 import com.namiya.model.ListVO;
 import com.namiya.model.NamiyaDAO;
 import com.namiya.model.NamiyaPostVO;
+import com.namiya.model.NamiyaUserVO;
 import com.namiya.model.PagingBean;
 
 public class ReadPostListController implements Controller {
@@ -28,6 +30,16 @@ public class ReadPostListController implements Controller {
 		ListVO vo=new ListVO(list, pagingBean);
 		request.setAttribute("listvo",vo);
 		request.setAttribute("url", "/post/readPostList.jsp");
+		
+		HttpSession session = request.getSession(false);
+		if(session!=null && session.getAttribute("userVO")!=null) {
+			NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
+			//읽지 않은 답글수 담기(헤더 갱신)
+			int count = NamiyaDAO.getInstance().getUnreadAnswerCount(userVO.getId());
+			session.setAttribute("unreadCount", count);
+		}
+		
+		
 		return "home.jsp";
 	}
 
