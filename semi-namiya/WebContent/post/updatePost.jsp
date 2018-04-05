@@ -8,6 +8,7 @@
 	<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
 	
 		<input type="hidden" name="command" value="UpdatePost"> 
+		<input type="hidden" name="uid" value="${sessionScope.userVO.id}">
 		<input type="hidden" name="pNo" value="${requestScope.postVO.pNo}">
 		<input type="hidden" id="p_lock" name="p_lock" value="${requestScope.postVO.lock }">
 		

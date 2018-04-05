@@ -254,21 +254,21 @@ $(document).ready(function() {
 	// 개인정보수정 ---------------------------------------------------------------------------------------------------
 	   $("#updateForm").submit(function() {
 	      var userNick="${sessionScope.userVO.nickName}";
-	      var flag = false;
+	      var flag=true;
 	      if($("#nick").val().length == 0){ 
 	         alertModal("닉네임을 입력해주세요.")
+	         flag=false;
 	      } else if($("#password1").val() != $("#password2").val()){
 	         alertModal("비밀번호가 일치하지 않습니다.")
+	         flag=false;
 	      } else if($("#password1").val().length == 0){
 	         alertModal("비밀번호를 입력해주세요")
+	         flag=false;
 	      } else if($("#nick").val().toUpperCase().startsWith("NM",0)){
 	         alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
-	      }else if(userNick!=$("#nick").val()){
-	         if( !checkNick($("#nick").val()) ){
-	            alertModal("닉네임이 중복됩니다.")
-	         }
-	      }else {
-	         flag = true;
+	         flag=false;
+	      }else if(userNick!=$("#nick").val()&&checkNick($("#nick").val())=="false"){
+	    	  flag=false;
 	      }
 	      return flag;
 	   });
@@ -282,10 +282,10 @@ $(document).ready(function() {
 	            success:function(data){
 	               if(data.nick=="true"){
 	                  //$("#checkId").html("사용가능!").css("color","blue");
-	                  return true;
+	                  return "true";
 	               } else {
 	                  //$("#checkId").html("사용불가!").css("color","red");
-	                  return false;
+	                  return "false";
 	               }
 	            }
 	         })//ajax
