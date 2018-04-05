@@ -9,9 +9,9 @@ a.post {
 }</style>
 
 <div class="row img">
-	<div class="col-sm-offset-1 col-sm-9 text-center text-center animated flipInX">
+	<div class="col-xs-offset-1 col-xs-9 text-center text-center animated flipInX">
 		<img src="assets/img/board.jpg">
-	</div> <!-- col-sm-offset-1 col-sm-9 text-center -->
+	</div> <!-- col-xs-offset-1 col-xs-9 text-center -->
 </div> <!-- row img -->
 <table class="table table-hover">
 	<thead>
@@ -73,7 +73,7 @@ a.post {
 		</c:forEach>
 	</tbody>
 </table>
-<div class="col-sm-10 text-center">
+<div class="col-xs-10 text-center">
 	<!-- 페이징버튼 -->
 	<ul class="pagination pagination">
 		<%-- 페이징빈 코드 줄여서 변수에 담음 : pb--%>

@@ -37,7 +37,7 @@ a.post {
 		</c:forEach>
 	</tbody>
 </table>
-<div class="col-sm-10 text-center">
+<div class="col-xs-10 text-center">
 <!-- 페이징버튼 -->
 	<ul class="pagination pagination">
 		<!-- 페이징빈 코드 줄여서 변수에 담음 : pb -->

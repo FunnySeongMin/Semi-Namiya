@@ -51,9 +51,9 @@ a.post {
 		</c:forEach>
 	</tbody>
 </table>
-<div class="col-sm-10 text-center">
+<div class="col-xs-10 text-center">
 	
-	<div class="input-group col-sm-offset-4 col-sm-4">
+	<div class="input-group col-xs-offset-4 col-xs-4">
 		
 		<!-- 검색메뉴 드랍다운 -->
 		<div class="input-group-btn">

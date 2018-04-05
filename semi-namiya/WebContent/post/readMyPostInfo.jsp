@@ -6,7 +6,7 @@
 <p style="height: 100px;"></p>
 
 <!-- 게시글 -->
-<div class="col-sm-offset-2 col-sm-7 animated fadeInDown">
+<div class="col-xs-offset-2 col-xs-7 animated fadeInDown">
 	<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
 		<div class="panel panel-primary" id="panels" data-effect="helix">
 			<div class="panel-heading">
@@ -25,9 +25,9 @@
 				 <div class="alert alert-success" style="white-space: pre-wrap;">${requestScope.postVO.pContent}</div>
 			</div>
 			<div class="panel-footer text-center">
-					<button type="button" class="btn btn-sm btn-danger" id="deleteConfirm">삭제</button>
-					<button type="button" class="btn btn-sm btn-primary" id="updateConfirm">수정</button>
-					<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadMyPostList&pageNo=${My_nowPage}'">목록</button>
+					<button type="button" class="btn btn-xs btn-danger" id="deleteConfirm">삭제</button>
+					<button type="button" class="btn btn-xs btn-primary" id="updateConfirm">수정</button>
+					<button type="button" class="btn btn-xs btn-default" onclick="location.href='dispatcher?command=ReadMyPostList&pageNo=${My_nowPage}'">목록</button>
 			</div>
 		</div>
 	</form>
@@ -38,14 +38,14 @@
 
 <!-- 답글보기 -->
 <div class="row">
-	<div class="col-sm-offset-2 col-sm-7">
+	<div class="col-xs-offset-2 col-xs-7">
 		<div class="text-center">
 			<c:if test="${postVO.reply==1}"> <!-- 답글이있을때만 보여주기 -->
-				<button type="button" id="replyViewBtn" class="btn btn-sm btn-primary animated fadeInDown">답글</button>
+				<button type="button" id="replyViewBtn" class="btn btn-xs btn-primary animated fadeInDown">답글</button>
 			</c:if>
 			<c:if test="${userVO.grade=='a' && postVO.reply==0}"> <!-- 관리자일때만 답글쓰기 -->
-				<!-- <button type="button" id="replyWriteBtn" class="btn btn-sm btn-primary" onclick="location.href='dispatcher?command=CreateReplyView'">답글쓰기</button> -->
-				<button type="button" id="replyWriteBtn" class="btn btn-sm btn-primary animated fadeInDown">답글쓰기</button>
+				<!-- <button type="button" id="replyWriteBtn" class="btn btn-xs btn-primary" onclick="location.href='dispatcher?command=CreateReplyView'">답글쓰기</button> -->
+				<button type="button" id="replyWriteBtn" class="btn btn-xs btn-primary animated fadeInDown">답글쓰기</button>
 			</c:if>
 		</div> <!-- text-center -->
 		<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
@@ -67,10 +67,10 @@
 				<div class="panel-footer">
 					<div class="text-center">
 						<c:if test="${userVO.grade == 'a' }">
-							<button type="button" id="updateReplyBtn" class="btn btn-sm btn-primary">수정</button>
+							<button type="button" id="updateReplyBtn" class="btn btn-xs btn-primary">수정</button>
 								<input type="hidden" name="command" value="DeleteReply">
 								<input type="hidden" name="pno" value="${postVO.pNo}">		
-								<button type="submit" class="btn btn-sm btn-danger">삭제</button>
+								<button type="submit" class="btn btn-xs btn-danger">삭제</button>
 						</c:if>
 					</div> <!-- text-center -->
 				</div> <!-- panel-footer -->
@@ -82,7 +82,7 @@
 
 <!-- 답글쓰기 -->
 <div class="row">
-	<div class="col-sm-offset-2 col-sm-7">
+	<div class="col-xs-offset-2 col-xs-7">
 		<c:if test="${userVO.grade=='a' && postVO.reply==0}"><!-- 관리자일때만 답글쓰기 -->
 			<c:import url="/reply/createReply.jsp"/>
 		</c:if>

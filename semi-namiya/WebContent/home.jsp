@@ -53,12 +53,12 @@
 	<div class="container-fluid">
 		<!-- 메인 -->
 		<div class="row main">
-			<div class="col-sm-offset-2 col-sm-8">
+			<div class="col-xs-offset-2 col-xs-8">
 				<c:import url="${url}"/>
 			</div> <!-- col-sm-offset-2 col-sm-8 -->
 			
 			<!-- 광고 -->
-			<div id="scrolladv" class="col-sm-2">
+			<div id="scrolladv" class="col-xs-2">
 				<!-- <p style="height: 200px;"></p> -->
 				<a href="#" id="adv"><img src="" title="이동?"></a>
 			</div>

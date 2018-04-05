@@ -14,7 +14,7 @@
 	</div>
 <div class="row">
 	<!-- Slider -->
-	<div class="col-sm-offset-3 col-sm-6">
+	<div class="col-xs-offset-3 col-xs-6">
 		<div id="myCarousel" class="carousel slide">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
