@@ -264,6 +264,7 @@ $(document).ready(function() {
 	//id 중복체크
 	$("#signup-email").keyup(function(){
 		var inputId=$(this).val();
+		 var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 		//console.log(inputId);
 		$.ajax({
 			type:"post",
@@ -272,9 +273,13 @@ $(document).ready(function() {
 			data:"command=CheckId&id="+inputId,
 			success:function(data){
 				if(data.flag=="true"){
-					$("#checkId").html("사용가능!").css("color","blue");
+					if( inputId.match(regExp) ){
+						$("#checkId").text("사용가능!").prop("class","label label-info pull-left")
+					}else {
+						$("#checkId").text("");
+					}
 				} else {
-					$("#checkId").html("사용불가!").css("color","red");
+					$("#checkId").text("사용불가!").prop("class","label label-danger pull-left")
 				}
 			}
 		})//ajax
@@ -284,21 +289,26 @@ $(document).ready(function() {
 	$("#signup-password2").keyup(function(){
 		var checkPass=$(this).val();
 		if($("#signup-password").val()==checkPass){
-			$("#checkPass").html("비밀번호 일치!").css("color","blue");
+			$("#checkPass").text("비밀번호 일치!").prop("class","label label-info pull-left")
 		}else{
-			$("#checkPass").html("비밀번호가 일치하지 않습니다!").css("color","red");
+			$("#checkPass").text("비밀번호가 일치하지 않습니다!").prop("class","label label-danger pull-left");
 		}
 	});//keyup
 	
 	//submit 제어
 	$("#register").submit(function(){
+		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 		if($('input:checkbox[id="accept-terms"]').is(":checked")==false){
 			failMessage("약관에 동의해 주세요.","#accept-terms");
 			//alert("약관에 동의해 주세요.");
 			//$("#accept-terms").focus();
 			return false;
 		}else if($("#checkId").text()!="사용가능!"){
-			failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
+			if(!$("#signup-email").text().match(regExp)) {
+				failMessage("이메일형식이 아닙니다. 아이디를 확인해 주세요.","#signup-email");
+			} else {
+				failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
+			}
 			//alert("중복된 아이디입니다. 아이디를 확인해 주세요.");
 			//$("#signup-email").focus();
 			return false;
@@ -324,7 +334,7 @@ $(document).ready(function() {
 			onhidden : function(dialogRef) {
 				if(form=="#signup-email"){
 					$(form).val("");
-					$("#checkId").html("아이디를 작성하세요!").css("color","green");
+					$("#checkId").text("아이디를 작성하세요!");
 				}
 					$(form).focus();
 				}, // onhidden
