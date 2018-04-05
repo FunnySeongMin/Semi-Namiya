@@ -3,8 +3,8 @@
 <!-- <embed src="import/나미야잡화점의기적.mp3" autostart="true" loop="true" width="280" 
 		height="45" volume="100"> -->
 <audio id="namiyaAudio" loop autoplay="autoplay" hidden="true" preload="none" >
-	<!-- <source src="import/나미야 나나나.mp3" type="audio/mpeg"> -->
-	<source src="import/나미야잡화점의기적.mp3" type="audio/mpeg">
+	<source src="import/나미야 나나나.mp3" type="audio/mpeg">
+	<!-- <source src="import/나미야잡화점의기적.mp3" type="audio/mpeg"> -->
 </audio>
 <script>
 $(document).ready(function() {
@@ -252,47 +252,44 @@ $(document).ready(function() {
 		
 		
 	// 개인정보수정 ---------------------------------------------------------------------------------------------------
-	$("#updateForm").submit(function() {
-		var userNick="${sessionScope.userVO.nickName}";
-		var flag = false;
-		if($("#nick").val().length == 0){ 
-			alertModal("닉네임을 입력해주세요.")
-		} else if($("#password1").val() != $("#password2").val()){
-			alertModal("비밀번호가 일치하지 않습니다.")
-		} else if($("#password1").val().length == 0){
-			alertModal("비밀번호를 입력해주세요")
-		} else if($("#nick").val().toUpperCase().startsWith("NM",0)){
-			alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
-		}else if(userNick!=$("#nick").val()){
-			if(!checkNick("#nick")){
-				alertModal("닉네임이 중복됩니다.")
-			}
-		}else {
-			flag = true;
-		}
-		return flag;
-	});
-	
-	function checkNick(nickName){
-		$(nickName).keyup(function() {
-		var nickName=$(nickName).val();
-			$.ajax({
-				type:"post",
-				dataType:"json",
-				url:"dispatcher",
-				data:"command=CheckNickname&nickname="+nickName,
-				success:function(data){
-					if(data.nick=="true"){
-						//$("#checkId").html("사용가능!").css("color","blue");
-						return true;
-					} else {
-						//$("#checkId").html("사용불가!").css("color","red");
-						return false;
-					}
-				}
-			})//ajax
-		})
-	}
+	   $("#updateForm").submit(function() {
+	      var userNick="${sessionScope.userVO.nickName}";
+	      var flag = false;
+	      if($("#nick").val().length == 0){ 
+	         alertModal("닉네임을 입력해주세요.")
+	      } else if($("#password1").val() != $("#password2").val()){
+	         alertModal("비밀번호가 일치하지 않습니다.")
+	      } else if($("#password1").val().length == 0){
+	         alertModal("비밀번호를 입력해주세요")
+	      } else if($("#nick").val().toUpperCase().startsWith("NM",0)){
+	         alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
+	      }else if(userNick!=$("#nick").val()){
+	         if( !checkNick($("#nick").val()) ){
+	            alertModal("닉네임이 중복됩니다.")
+	         }
+	      }else {
+	         flag = true;
+	      }
+	      return flag;
+	   });
+	   
+	   function checkNick(nickName){
+	         $.ajax({
+	            type:"post",
+	            dataType:"json",
+	            url:"dispatcher",
+	            data:"command=CheckNickname&nickname="+nickName,
+	            success:function(data){
+	               if(data.nick=="true"){
+	                  //$("#checkId").html("사용가능!").css("color","blue");
+	                  return true;
+	               } else {
+	                  //$("#checkId").html("사용불가!").css("color","red");
+	                  return false;
+	               }
+	            }
+	         })//ajax
+	   }
 		
 	$("#delBtn").click(function() {
 		/* location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser&id=${userVO.id }"; */
