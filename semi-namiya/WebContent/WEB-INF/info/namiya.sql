@@ -1,9 +1,9 @@
 -- 유저 테이블(회원,관리자,탈퇴한회원)
 DROP TABLE namiya_user;
 CREATE TABLE namiya_user (
-   id VARCHAR2(100) PRIMARY KEY, -- 아이디(이메일형식)
-   password VARCHAR2(100) NOT NULL, -- 패스워드
-   nickname VARCHAR2(100) NOT NULL, -- 닉네임
+   id varchar2(200) PRIMARY KEY, -- 아이디(이메일형식)
+   password varchar2(200) NOT NULL, -- 패스워드
+   nickname varchar2(200) NOT NULL, -- 닉네임
    logindate	date	default sysdate,
    grade VARCHAR2(1) DEFAULT 'm' -- 회원상태 여부. 회원:m, 관리자:a, 탈퇴한회원:d 
 );
@@ -35,13 +35,12 @@ ALTER TABLE namiya_answer ADD(readRe VARCAHR2(13));
 DROP TABLE namiya_answer;
 CREATE TABLE namiya_answer (
     p_no NUMBER PRIMARY KEY, -- 게시글 글번호(참조키)
-    a_title VARCHAR2(100) NOT NULL, -- 답변 제목
+    a_title varchar2(200) NOT NULL, -- 답변 제목
     a_content CLOB NOT NULL, -- 답변 내용
     a_date DATE DEFAULT SYSDATE, -- 답변 등록일
     CONSTRAINT fk_namiya_pno FOREIGN KEY(p_no) 
     REFERENCES namiya_post(p_no) ON DELETE CASCADE --  답변이 달린 게시글을 삭제하기위함(참조된테이블도 같이 삭제)
 );
-
 -- **namiya_user**
 -- 관리자 가입
 INSERT INTO namiya_user (id, password, nickname , grade ) 
