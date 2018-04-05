@@ -33,7 +33,13 @@ public class ReadMyPostListController implements Controller {
 		}else{
 			pagingBean=new PagingBean(myPostCount,Integer.parseInt(nowPage));
 		}
+		//답변완료인 글만 답글정보(answerVO) 가져오기
 		ArrayList<NamiyaPostVO> list=NamiyaDAO.getInstance().myPostList(id,pagingBean);
+		for(NamiyaPostVO pvo : list) {
+			if(pvo.getReply()==1) {
+				pvo.setAnswerVO(NamiyaDAO.getInstance().readReply(pvo.getpNo()));
+			}
+		}
 		ListVO lvo=new ListVO(list, pagingBean);
 		request.setAttribute("listvo", lvo);
 		request.setAttribute("url", "/post/readMyPost.jsp");
