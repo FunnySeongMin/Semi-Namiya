@@ -75,6 +75,7 @@
 				</div>
 
 				<!-- 닉네임 -->
+				<span id="checkNick"></span>
 				<p class="cd-signin-modal__fieldset">
 					<label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">닉네임</label>
 					<input maxlength="7" name="userNick" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="닉네임" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">

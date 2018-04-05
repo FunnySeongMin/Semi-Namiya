@@ -198,6 +198,7 @@ $(document).ready(function() {
 		
 	// 개인정보수정 ---------------------------------------------------------------------------------------------------
 	$("#updateForm").submit(function() {
+		var userNick="${sessionScope.userVO.nickName}";
 		var flag = false;
 		if($("#nick").val().length == 0){ 
 			alertModal("닉네임을 입력해주세요.")
@@ -205,11 +206,38 @@ $(document).ready(function() {
 			alertModal("비밀번호가 일치하지 않습니다.")
 		} else if($("#password1").val().length == 0){
 			alertModal("비밀번호를 입력해주세요")
-		} else {
+		} else if($("#nick").val().toUpperCase().startsWith("NM",0)){
+			alertModal("닉네임에는 NM이 들어갈 수 없습니다.")
+		}else if(userNick!=$("#nick").val()){
+			if(!checkNick("#nick")){
+				alertModal("닉네임이 중복됩니다.")
+			}
+		}else {
 			flag = true;
 		}
 		return flag;
 	});
+	
+	function checkNick(nickName){
+		$(nickName).keyup(function() {
+		var nickName=$(nickName).val();
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"dispatcher",
+				data:"command=CheckNickname&nickname="+nickName,
+				success:function(data){
+					if(data.nick=="true"){
+						//$("#checkId").html("사용가능!").css("color","blue");
+						return true;
+					} else {
+						//$("#checkId").html("사용불가!").css("color","red");
+						return false;
+					}
+				}
+			})//ajax
+		})
+	}
 		
 	$("#delBtn").click(function() {
 		/* location.href = "${pageContext.request.contextPath}/dispatcher?command=DeleteUser&id=${userVO.id }"; */
@@ -290,6 +318,24 @@ $(document).ready(function() {
 		}
 	});//keyup
 	
+	//회원가입 닉네임 중복 체크
+	$("#signup-username").keyup(function(){
+		var userNick=$(this).val();
+		$.ajax({
+			type:"post",
+			dataType:"json",
+			url:"dispatcher",
+			data:"command=CheckNickname&nickname="+userNick,
+			success:function(data){
+				if(data.nick=="true"){
+					$("#checkNick").html("사용가능!").css("color","blue");
+				} else {
+					$("#checkNick").html("사용불가!").css("color","red");
+				}
+			}
+		})//ajax
+	})
+	
 	//submit 제어
 	$("#register").submit(function(){
 		if($('input:checkbox[id="accept-terms"]').is(":checked")==false){
@@ -306,6 +352,9 @@ $(document).ready(function() {
 			failMessage("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.","#signup-password2");
 			//alert("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.");
 			//$("#signup-password2").focus();
+			return false;
+		}else if($("#checkNick").text()!="사용가능!"){
+			failMessage("닉네임이 중복됩니다.","#signup-username");
 			return false;
 		}else if($("#signup-username").val().toUpperCase().startsWith("NM",0)){
 			failMessage("닉네임 앞에는 GM을 붙일 수 없습니다!!","#signup-username");
