@@ -44,7 +44,6 @@
 <script src="assets/js/typeahead.min.js"></script>
 <!-- emailJS -->
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
 <title>Namiya</title>
 </head>
 <body>
@@ -52,7 +51,6 @@
 	<c:import url="import/header.jsp"/>
 	
 	<div class="container-fluid">
-	
 		<!-- 메인 -->
 		<div class="row main">
 			<div class="col-sm-offset-2 col-sm-8">
@@ -65,7 +63,6 @@
 				<a href="#" id="adv"><img src="" title="이동?"></a>
 			</div>
 		</div> <!-- row main -->
-		
 	</div> <!-- contaniner-fluid -->
 	
 	<!-- 푸터 -->
@@ -73,51 +70,4 @@
 		<c:import url="import/footer.jsp"/>
 	</footer>
 </body>
-<script>
-$(document).ready(function() {
-	var num = randomNum(6);
-	$("#adv img").prop("src","adv/"+num+".jpg");
-	// 광고이미지 선택시 url이동
-	switch (num) {
-	case 1:
-		$("#adv").prop("href","http://www.naver.com")
-		break;
-	case 2:
-		$("#adv").prop("href","http://www.google.com")
-		break;
-	case 3:
-		$("#adv").prop("href","http://www.daum.net")
-		break;
-	case 4:
-		$("#adv").prop("href","http://www.nate.com")
-		break;
-	case 5:
-		$("#adv").prop("href","http://www.instagram.com")
-		break;
-	case 6:
-		$("#adv").prop("href","http://www.facebook.com")
-		break;
-	}
-	// 난수만들기
-	function randomNum(num) {
-		var randomNum = Math.ceil(Math.random() * num);
-		return randomNum;
-	}
-	var floatPosition = parseInt($("#scrolladv").css('top'));
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
- 		var newPosition = scrollTop;
-		/* 애니메이션 없이 바로 따라감
-		 $("#floatMenu").css('top', newPosition);
-		 */
- 
-		$("#scrolladv").stop().animate({
-			"top" : newPosition
-		}, 500);
- 
-	}).scroll();
- 
-	}); //ready
-</script>
 </html>

@@ -82,7 +82,7 @@
 
 				<!-- 약관 -->
 				<p class="cd-signin-modal__fieldset">
-					<input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
+					<input type="checkbox" id="accept-terms" class="cd-signin-modal__input">
 					<label for="accept-terms">약관에 동의합니다<button type="button" class="btn btn-link" id="termBtn"><strong>약관보기</strong></button></label>
 					<c:import url="import/term.jsp" />
 				</p>
