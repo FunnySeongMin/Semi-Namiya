@@ -38,6 +38,7 @@ CREATE TABLE namiya_answer (
     a_title varchar2(200) NOT NULL, -- 답변 제목
     a_content CLOB NOT NULL, -- 답변 내용
     a_date DATE DEFAULT SYSDATE, -- 답변 등록일
+    readRe NUMBER DEFAULT 0, --답변 읽은 여부
     CONSTRAINT fk_namiya_pno FOREIGN KEY(p_no) 
     REFERENCES namiya_post(p_no) ON DELETE CASCADE --  답변이 달린 게시글을 삭제하기위함(참조된테이블도 같이 삭제)
 );
