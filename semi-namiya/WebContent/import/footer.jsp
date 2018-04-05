@@ -74,7 +74,11 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://edu.kosta.or.kr/index")
 		break;
 	case 2: // 김유란
+<<<<<<< HEAD
 		$("#adv").prop("href","http://192.168.0.184:8888/BBackYoga")
+=======
+		$("#adv").prop("href","http://192.168.0.184:8888/BBacksToga")
+>>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 		break;
 	case 3: // 류완선
 		$("#adv").prop("href","http://192.168.0.178:8888/KCver01")
@@ -86,9 +90,54 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://192.168.0.135:8888/Hue")
 		break;
 	case 6: // 이상욱
+<<<<<<< HEAD
 		$("#adv").prop("href","http://192.168.0.121:8888/semi-namiya")
+=======
+>>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 		break;
 	}
+	$("#adv").click(function() {
+		if(num == 6) {
+			urlModal()
+		}
+	})
+	
+	function urlModal() {
+		BootstrapDialog.show({
+			type : "type-primary",
+			title : "알림",
+		    message: '<p class="lead text-center">안녕?</p> \n <input type="text" class="form-control">',
+		    onhide: function(dialogRef){
+		        var zzz = dialogRef.getModalBody().find('input').val();
+		        if($.trim(zzz.toLowerCase()) !== '1조최고') {
+		        	BootstrapDialog.show({
+		    			type : "type-danger",
+		    			title : "<i class='fas fa-exclamation-circle'></i> 알림",
+		    			message : "1조최고 라고 입력해주세요^^",
+		    			closable : false,
+		    			buttons : [ {
+		    				label : "확인",
+		    				hotkey : 13,
+		    				action : function(cancel) {
+		    					cancel.close();
+		    				}
+		    			} ]
+		    		});
+		            return false;
+		        } else {
+		        	location.href = "http://192.168.0.121:8888/semi-namiya";
+		        }
+		    },
+		    buttons: [{
+		        label: '확인',
+		        hotkey : 13,
+		        action: function(dialogRef) {
+		            dialogRef.close();
+		        }
+		    }]
+		});
+	}
+	
 	// 난수만들기
 	function randomNum(num) {
 		var randomNum = Math.ceil(Math.random() * num);
@@ -338,7 +387,7 @@ $(document).ready(function() {
 	});//keyup
 	
 	//회원가입 닉네임 중복 체크
-	$("#signup-username").keyup(function(){
+	$("#signup-username").keyup(function(){ 
 		var userNick=$(this).val();
 		$.ajax({
 			type:"post",
@@ -347,45 +396,44 @@ $(document).ready(function() {
 			data:"command=CheckNickname&nickname="+userNick,
 			success:function(data){
 				if(data.nick=="true"){
-					$("#checkNick").html("사용가능!").css("color","blue");
-				} else {
-					$("#checkNick").html("사용불가!").css("color","red");
+					if(userNick.length != 0) {
+						$("#checkNick").text("사용가능!").prop("class","label label-info pull-left");
+					} else {
+						$("#checkNick").text("");
+					}
+				}else {
+					$("#checkNick").text("사용불가!").prop("class","label label-danger pull-left");
 				}
 			}
 		})//ajax
 	})
 	
 	//submit 제어
-	$("#register").submit(function(){
-		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-		if($('input:checkbox[id="accept-terms"]').is(":checked")==false){
-			failMessage("약관에 동의해 주세요.","#accept-terms");
-			//alert("약관에 동의해 주세요.");
-			//$("#accept-terms").focus();
-			return false;
-		}else if($("#checkId").text()!="사용가능!"){
-			if(!$("#signup-email").text().match(regExp)) {
-				failMessage("이메일형식이 아닙니다. 아이디를 확인해 주세요.","#signup-email");
-			} else {
-				failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
-			}
-			//alert("중복된 아이디입니다. 아이디를 확인해 주세요.");
-			//$("#signup-email").focus();
-			return false;
-		}else if($("#checkPass").text()!="비밀번호 일치!"){
-			failMessage("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.","#signup-password2");
-			//alert("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.");
-			//$("#signup-password2").focus();
-			return false;
-		}else if($("#checkNick").text()!="사용가능!"){
-			failMessage("닉네임이 중복됩니다.","#signup-username");
-			return false;
-		}else if($("#signup-username").val().toUpperCase().startsWith("NM",0)){
-			failMessage("닉네임 앞에는 GM을 붙일 수 없습니다!!","#signup-username");
-			return false;
-		}else{
-			return true;
-		}
+   $("#register").submit(function(){
+      if($('input:checkbox[id="accept-terms"]').is(":checked")==false){
+         failMessage("약관에 동의해 주세요.","#accept-terms");
+         //alert("약관에 동의해 주세요.");
+         //$("#accept-terms").focus();
+         return false;
+      }else if($("#checkId").text()!="사용가능!"){
+         failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
+         //alert("중복된 아이디입니다. 아이디를 확인해 주세요.");
+         //$("#signup-email").focus();
+         return false;
+      }else if($("#checkPass").text()!="비밀번호 일치!"){
+         failMessage("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.","#signup-password2");
+         //alert("비밀번호와 비밀번호 확인이 다릅니다. 비밀번호를 확인해 주세요.");
+         //$("#signup-password2").focus();
+         return false;
+      }else if($("#checkNick").text()!="사용가능!"){
+         failMessage("닉네임이 중복됩니다.","#signup-username");
+         return false;
+      }else if($("#signup-username").val().toUpperCase().startsWith("NM",0)){
+         failMessage("닉네임 앞에는 GM을 붙일 수 없습니다!!","#signup-username");
+         return false;
+      }else{
+         return true;
+      }
 			
 		// 회원가입 실패 모달
 	function failMessage(msg,form) {
