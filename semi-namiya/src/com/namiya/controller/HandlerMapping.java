@@ -16,6 +16,7 @@ import com.namiya.controller.reply.UnAnsweredListController;
 import com.namiya.controller.reply.UpdateReplyController;
 import com.namiya.controller.user.AdminPageController;
 import com.namiya.controller.user.CheckIdController;
+import com.namiya.controller.user.CheckNicknameController;
 import com.namiya.controller.user.CreateUserController;
 import com.namiya.controller.user.DeleteUserController;
 import com.namiya.controller.user.LoginController;
@@ -86,6 +87,8 @@ public class HandlerMapping {
 			c=new SearchController();
 		}else if(command.equals("removeUser")) {
 			c=new RemoveUserController();
+		}else if(command.equals("CheckNickname")) {
+			c=new CheckNicknameController();
 		}
 		return c;
 	}

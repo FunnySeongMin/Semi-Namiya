@@ -234,4 +234,23 @@ public class NamiyaUserDAO {
 		}
 		return count;
 	}
+	public String checkNickname(String nickName) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String flag=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select nickname from namiya_user where nickname=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				flag=rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
+	}
 }

@@ -71,7 +71,7 @@
 					</p>
 				</div>
 
-				<!-- 비밀번호 확인 -->
+
 				<p class="cd-signin-modal__fieldset">
 					<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호확인</label>
 					<input maxlength="20" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password2" type="password" placeholder="비밀번호확인" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
