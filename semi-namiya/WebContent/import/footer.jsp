@@ -74,7 +74,7 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://edu.kosta.or.kr/index")
 		break;
 	case 2: // 김유란
-		$("#adv").prop("href","http://192.168.0.184:8888/BBackYoga")
+		$("#adv").prop("href","http://192.168.0.184:8888/BBacksToga")
 		break;
 	case 3: // 류완선
 		$("#adv").prop("href","http://192.168.0.178:8888/KCver01")
@@ -621,7 +621,4 @@ $(document).ready(function() {
 	$("#findBtn").click(function(){ //돋보기 아이콘 눌렀을 때 이동!
 		location.href="${pageContext.request.contextPath}/dispatcher?command=Search&category="+category+"&keyword="+$("#keyword").val();
 	});
-	// 내상담목록 끝------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	
-}); //ready
-</script>
+	// 내상담목록 끝
