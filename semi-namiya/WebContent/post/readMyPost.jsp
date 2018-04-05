@@ -36,11 +36,11 @@ a.post {
 			</c:choose><%-- // 답변여부 --%>					
 			<c:choose>	<%-- 공개 비공개 구분 --%>		
 					<c:when test="${info.lock=='y' }"><%--비공개(y) 글보기 --%>								
-								<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadPostInfo&pNo=${info.pNo}">
+								<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadMyPostInfo&pNo=${info.pNo}">
 								<i class="fas fa-lock"></i>&nbsp;${info.pTitle }</a></td>
 					</c:when><%--// 비공개(y) 글보기 --%>					
 					<c:otherwise><%--공개글 보기 --%>
-						<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadPostInfo&pNo=${info.pNo}">
+						<td><a class="post" href="${pageContext.request.contextPath}/dispatcher?command=ReadMyPostInfo&pNo=${info.pNo}">
 								${info.pTitle }</a></td>
 					</c:otherwise><%-- // 공개글 보기--%>
 			</c:choose><%-- // 공개 비공개 구분 --%>
