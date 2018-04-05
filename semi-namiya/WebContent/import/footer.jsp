@@ -74,11 +74,7 @@ $(document).ready(function() {
 		$("#adv").prop("href","http://edu.kosta.or.kr/index")
 		break;
 	case 2: // 김유란
-<<<<<<< HEAD
 		$("#adv").prop("href","http://192.168.0.184:8888/BBackYoga")
-=======
-		$("#adv").prop("href","http://192.168.0.184:8888/BBacksToga")
->>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 		break;
 	case 3: // 류완선
 		$("#adv").prop("href","http://192.168.0.178:8888/KCver01")
