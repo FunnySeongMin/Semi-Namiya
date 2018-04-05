@@ -47,7 +47,6 @@
 $(document).ready(function() {
 	var email = "${param.id}";
 	var password = "${param.password}";
-	alert(email+"\n"+password)	
 	BootstrapDialog.show({
 			type : "type-info",
 			title : "알림",
