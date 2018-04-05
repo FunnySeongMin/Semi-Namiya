@@ -544,35 +544,104 @@ $(document).ready(function() {
 	});
 	
 	// 게시글 삭제버튼 클릭시
-	$("#deleteConfirm").click(function() {
-		var url = "${pageContext.request.contextPath}/dispatcher?command=DeletePost&pNo=${requestScope.postVO.pNo}";
-		confirmModal("게시글을 삭제하시겠습니까?",url,"danger")
+	$("#readPostListForm").submit(function() {
+		/* deleteModal("게시글을 삭제하시겠습니까?") */
+		var flag = "false";
+		BootstrapDialog.show({
+			type : "type-danger",
+			title : "<i class='fas fa-exclamation-circle'></i> 알림",
+			message : "게시글을 삭제하시겠습니까?",
+			closable : false,
+			onhidden : function(dialogRef) {
+				if (flag == "true") {
+					$("#readPostListForm").prop("onsubmit","return true;").submit();
+				}
+			},
+			buttons : [ {
+				label : '확인',
+				cssClass : 'btn-danger',
+				action : function(dialogRef) {
+					flag = "true";
+					dialogRef.close();
+				} // action
+			}, {
+				label : '취소',
+				action : function(dialogRef) {
+					falg = "false";
+					dialogRef.close();
+				} // action
+			} ]
+		// buttons
+		}); // bootstrapDialog
 	});
 	
 	// 게시글 수정버튼 클릭시
 	$("#updateConfirm").click(function() {
-		var url = "${pageContext.request.contextPath}/dispatcher?command=UpdatePostView&pNo=${requestScope.postVO.pNo}";
-		confirmModal("게시글을 수정하시겠습니까?",url,"success")
+		var flag = "false";
+		BootstrapDialog.show({
+			type : "type-success",
+			title : "<i class='fas fa-check-circle'></i> 알림",
+			message : "게시글을 수정하시겠습니까?",
+			closable : false,
+			onhidden : function(dialogRef) {
+				if (flag == "true") {
+					location.href = "${pageContext.request.contextPath}/dispatcher?command=UpdatePostView&pNo=${requestScope.postVO.pNo}";
+				}
+			},
+			buttons : [ {
+				label : '확인',
+				cssClass : 'btn-success',
+				action : function(dialogRef) {
+					flag = "true";
+					dialogRef.close();
+				} // action
+			}, {
+				label : '취소',
+				action : function(dialogRef) {
+					falg = "false";
+					dialogRef.close();
+				} // action
+			} ]
+		// buttons
+		}); // bootstrapDialog
 	});
 		
-	// 게시글 삭제,클릭 모달
-	function confirmModal(msg,url,css) {
+	// 게시글 수정 모달
+	function updateModal(msg,url) {
 		BootstrapDialog.confirm({
 			title : "<i class='fas fa-check-circle'></i> 알림",
 			message: msg,
-			type : "type-"+css,
+			type : "type-success",
 			btnCancelLabel: '취소', 
 			btnOKLabel: '확인', 
-			btnOKClass: 'btn-'+css,
+			btnOKClass: 'btn-success',
 			callback: function(result) {
 				if(result) {
-					location.href = url;
+					location.href = "${pageContext.request.contextPath}/dispatcher?command=UpdatePostView&pNo=${requestScope.postVO.pNo}";
 				}else {
 					
 				}
 			} //callback
 		}); //BootstrapDialog.confirm
-	} // confirmModal
+	} // updateModal
+	
+	function deleteModal(msg) {
+		BootstrapDialog.confirm({
+			title : "<i class='fas fa-check-circle'></i> 알림",
+			message: msg,
+			type : "type-danger",
+			btnCancelLabel: '취소', 
+			btnOKLabel: '확인', 
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					$("#readPostForm").prop("onsubmit",true).submit();
+				}else {
+					
+				}
+			} //callback
+		}); //BootstrapDialog.confirm
+	} // deleteModal
 	// 게시글보기,검색,삭제,수정 끝 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	

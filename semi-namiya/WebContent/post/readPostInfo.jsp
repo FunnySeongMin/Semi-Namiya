@@ -7,7 +7,7 @@
 
 <!-- 게시글 -->
 <div class="col-sm-offset-2 col-sm-7 animated fadeInDown">
-	<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
+	<form id="readPostListForm" class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post" onsubmit="return false;">
 		<div class="panel panel-primary" id="panels" data-effect="helix">
 			<div class="panel-heading">
 				<span> 제목 : ${requestScope.postVO.pTitle} </span>
@@ -26,7 +26,9 @@
 			</div>
 			<div class="panel-footer text-center">
 				<c:if test="${requestScope.postVO.userVO.id==sessionScope.userVO.id}"><%--삭제,수정 버튼은 작성자 본인일때만 --%>
-					<button type="button" class="btn btn-sm btn-danger" id="deleteConfirm">삭제</button>
+					<input type="hidden" name="command" value="DeletePost">
+					<input type="hidden" name="pNo" value="${requestScope.postVO.pNo }">
+					<button type="submit" class="btn btn-sm btn-danger" id="deleteConfirm">삭제</button>
 					<button type="button" class="btn btn-sm btn-primary" id="updateConfirm">수정</button>
 				</c:if>
 				<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadPostList&pageNo=${nowPage}'">목록</button>
@@ -71,7 +73,7 @@
 						<c:if test="${userVO.grade == 'a' }">
 							<button type="button" id="updateReplyBtn" class="btn btn-sm btn-primary">수정</button>
 								<input type="hidden" name="command" value="DeleteReply">
-								<input type="hidden" name="pno" value="${postVO.pNo}">		
+								<input type="hidden" id="pno" name="pno" value="${postVO.pNo}">		
 								<button type="submit" class="btn btn-sm btn-danger">삭제</button>
 						</c:if>
 					</div> <!-- text-center -->
@@ -92,6 +94,3 @@
 		<c:import url="/reply/updateReply.jsp"/>
 	</div>
 </div>
-<script>
-consol.log(${nowPage});
-</script>
