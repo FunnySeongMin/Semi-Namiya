@@ -132,9 +132,23 @@ $(document).ready(function() {
 			data:$("#loginForm").serialize(),
 			success:function(data){
 				if(data.flag=="fail"){//fail일 경우 ajax로 바로 처리. 아이디, 패스워드 입력폼에 셀렉터 id값 추가
-					alert("로그인 실패! 아이디와 패스워드를 확인하세요.");
-					$("#signin-email").val("").focus(); //로그인 실패 알림 후 기존입력값 지우고 email 입력폼에 포커스.
-					$("#signin-password").val("");
+					BootstrapDialog .show({
+						type : "type-danger",
+						title : "<i class='fas fa-exclamation-circle'></i> 알림",
+						message : "로그인 실패! 아이디와 패스워드를 확인하세요.",
+						closable : false,
+						onhidden: function(dialogRef){
+							$("#signin-email").focus();
+							$("#signin-password").val("");
+			            },
+						buttons : [ {
+							label : "확인",
+							hotkey : 13,
+							action : function(cancel) {
+								cancel.close();
+							}
+						} ]
+					});
 				}else{//로그인 성공시에는 세션값에 따라 헤더상태 메뉴가 유지되므로 여기에서 화면을 구성하는 것은 불필요.페이지 재로딩으로 처리
 					location.href="index.jsp";
 				}
@@ -142,7 +156,7 @@ $(document).ready(function() {
 		});//ajax
 		return false;
 	});//LoginForm submit
-
+	
 	//쿠키에 저장된 아이디를 가져와 입력폼에 셋팅 
 	var userInputId = getCookie("userInputId");
 	$("#signin-email").val(userInputId); 
