@@ -16,7 +16,7 @@
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-3 control-label">제목</label>
 					<div class="col-sm-6 input-group">
-						<input type="text" class="form-control" name="aTitle" placeholder="답글 제목을 입력하세요" required value="${postVO.answerVO.aTitle}">
+						<input maxlength="35" type="text" class="form-control" name="aTitle" placeholder="답글 제목을 입력하세요" required value="${postVO.answerVO.aTitle}">
 					</div>
 				</div>
 					<!-- 글내용 -->

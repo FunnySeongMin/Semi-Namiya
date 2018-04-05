@@ -24,6 +24,9 @@ public class ReadMyPostListController implements Controller {
 			return "redirect:index.jsp";
 		}
 		NamiyaUserVO vo=(NamiyaUserVO) session.getAttribute("userVO");
+		if(vo.getGrade()=="a") {//관리자는 접근할 수 없음
+			return "redirect:index.jsp";
+		}
 		String id=vo.getId();
 		int myPostCount=NamiyaDAO.getInstance().readMyPostCount(id);
 		String nowPage=request.getParameter("pageNo");
@@ -43,6 +46,12 @@ public class ReadMyPostListController implements Controller {
 		ListVO lvo=new ListVO(list, pagingBean);
 		request.setAttribute("listvo", lvo);
 		request.setAttribute("url", "/post/readMyPost.jsp");
+		
+		//readPostInfo의 목록버튼에서 해당 페이지 목록을 불러오기 위해 nowPage정보 세션에 저장
+		if(nowPage==null) 
+			nowPage="1";
+		session.setAttribute("My_nowPage", nowPage);
+		
 		return "home.jsp";
 	}
 

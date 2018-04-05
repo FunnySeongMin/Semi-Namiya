@@ -25,11 +25,9 @@
 				 <div class="alert alert-success" style="white-space: pre-wrap;">${requestScope.postVO.pContent}</div>
 			</div>
 			<div class="panel-footer text-center">
-				<c:if test="${requestScope.postVO.userVO.id==sessionScope.userVO.id}"><%--삭제,수정 버튼은 작성자 본인일때만 --%>
 					<button type="button" class="btn btn-sm btn-danger" id="deleteConfirm">삭제</button>
 					<button type="button" class="btn btn-sm btn-primary" id="updateConfirm">수정</button>
-				</c:if>
-				<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadPostList&pageNo=${nowPage}'">목록</button>
+					<button type="button" class="btn btn-sm btn-default" onclick="location.href='dispatcher?command=ReadMyPostList&pageNo=${My_nowPage}'">목록</button>
 			</div>
 		</div>
 	</form>
@@ -92,6 +90,3 @@
 		<c:import url="/reply/updateReply.jsp"/>
 	</div>
 </div>
-<script>
-consol.log(${nowPage});
-</script>

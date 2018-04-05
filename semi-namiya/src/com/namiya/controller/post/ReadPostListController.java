@@ -37,6 +37,10 @@ public class ReadPostListController implements Controller {
 			//읽지 않은 답글수 담기(헤더 갱신)
 			int count = NamiyaDAO.getInstance().getUnreadAnswerCount(userVO.getId());
 			session.setAttribute("unreadCount", count);
+			//readPostInfo의 목록버튼에서 해당 페이지 목록을 불러오기 위해 nowPage정보 세션에 저장
+			if(nowPage==null) 
+				nowPage="1";
+			session.setAttribute("nowPage", nowPage);
 		}
 		
 		

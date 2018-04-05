@@ -58,7 +58,7 @@
 					<label id="checkId" class="label label-default pull-left" data-effect="pop"></label>
 					<p class="cd-signin-modal__fieldset">
 						<label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"	for="signup-email">이메일</label>
-						<input name="userId" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="이메일" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
+						<input maxlength="35" name="userId" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="이메일" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
 					</p>
 				</div>
 				
@@ -67,7 +67,7 @@
 					<label id="checkPass" class="label label-danger pull-left" data-effect="pop"></label>
 					<p class="cd-signin-modal__fieldset">
 						<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호</label>
-						<input name="userPassword" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="password" placeholder="비밀번호"	required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
+						<input maxlength="35" name="userPassword" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="password" placeholder="비밀번호"	required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
 					</p>
 				</div>
 

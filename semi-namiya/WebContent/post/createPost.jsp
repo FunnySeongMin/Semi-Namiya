@@ -20,7 +20,7 @@
 					<input type="hidden" id="p_lock" name="p_lock" value="n">
 					<!-- 제목 -->
 					<div class="form-group">
-						<label for="inputEmail" class="col-sm-3 control-label">제목</label>
+						<label for="inputEmail"  class="col-sm-3 control-label">제목</label>
 						<div class="col-sm-6 input-group"> 
 							<input type="text" class="form-control" name="pTitle" maxlength="35" placeholder="게시글 제목을 입력하세요" required>
 						</div> 
