@@ -3,6 +3,7 @@ package com.namiya.controller;
 import com.namiya.controller.post.CreatePostController;
 import com.namiya.controller.post.CreatePostViewController;
 import com.namiya.controller.post.DeletePostController;
+import com.namiya.controller.post.ReadMyPostInfoController;
 import com.namiya.controller.post.ReadMyPostListController;
 import com.namiya.controller.post.ReadPostInfoController;
 import com.namiya.controller.post.ReadPostListController;
@@ -68,6 +69,8 @@ public class HandlerMapping {
 			c=new ReadMyPostListController();
 		}else if(command.equals("ReadPostInfo")) {
 			c=new ReadPostInfoController();
+		}else if(command.equals("ReadMyPostInfo")) {
+			c=new ReadMyPostInfoController();
 		}else if(command.equals("UpdatePost")) {
 			c=new UpdatePostController();
 		}else if(command.equals("UpdatePostView")) {

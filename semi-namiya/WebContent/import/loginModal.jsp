@@ -48,38 +48,48 @@
 
 		<div class="cd-signin-modal__block js-signin-modal-block"
 			data-type="signup">
+			
 			<!-- 회원가입폼 -->
 			<form id="register" action="dispatcher" class="cd-signin-modal__form">
 				<input type="hidden" name="command" value="CreateUser">
+				
 				<!-- 이메일 -->
-				<span id="checkId"></span>
 				<div>
+					<label id="checkId" class="label label-default pull-left" data-effect="pop"></label>
 					<p class="cd-signin-modal__fieldset">
 						<label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"	for="signup-email">이메일</label>
 						<input maxlength="35" name="userId" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="이메일" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
 					</p>
 				</div>
+				
 				<!-- 비밀번호 -->
-				<p class="cd-signin-modal__fieldset">
-					<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호</label>
-					<input maxlength="35" name="userPassword" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="password" placeholder="비밀번호"	required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
-				</p>
-
-				<!-- 비밀번호 확인 -->
-				<span id="checkPass"></span>
 				<div>
+					<label id="checkPass" class="label label-danger pull-left" data-effect="pop"></label>
 					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호확인</label>
-						<input maxlength="35" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password2" type="password" placeholder="비밀번호확인" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
+						<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호</label>
+						<input maxlength="20" name="userPassword" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="password" placeholder="비밀번호"	required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
 					</p>
 				</div>
 
+<<<<<<< HEAD
 				<!-- 닉네임 -->
 				<span id="checkNick"></span>
+=======
+				<!-- 비밀번호 확인 -->
+>>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 				<p class="cd-signin-modal__fieldset">
-					<label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">닉네임</label>
-					<input maxlength="7" name="userNick" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="닉네임" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
+					<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">비밀번호확인</label>
+					<input maxlength="20" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password2" type="password" placeholder="비밀번호확인" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
 				</p>
+
+				<!-- 닉네임 -->
+				<div>
+					<label id="checkNick" class="label label-danger pull-left" data-effect="pop"></label>
+					<p class="cd-signin-modal__fieldset">
+						<label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">닉네임</label>
+						<input maxlength="8" name="userNick" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="닉네임" required="required" onkeyup="this.value=this.value.replace(/\s/g,'')">
+					</p>
+				</div>
 
 				<!-- 약관 -->
 				<p class="cd-signin-modal__fieldset">

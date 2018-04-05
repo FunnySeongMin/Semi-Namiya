@@ -132,9 +132,23 @@ $(document).ready(function() {
 			data:$("#loginForm").serialize(),
 			success:function(data){
 				if(data.flag=="fail"){//fail일 경우 ajax로 바로 처리. 아이디, 패스워드 입력폼에 셀렉터 id값 추가
-					alert("로그인 실패! 아이디와 패스워드를 확인하세요.");
-					$("#signin-email").val("").focus(); //로그인 실패 알림 후 기존입력값 지우고 email 입력폼에 포커스.
-					$("#signin-password").val("");
+					BootstrapDialog .show({
+						type : "type-danger",
+						title : "<i class='fas fa-exclamation-circle'></i> 알림",
+						message : "로그인 실패! 아이디와 패스워드를 확인하세요.",
+						closable : false,
+						onhidden: function(dialogRef){
+							$("#signin-email").focus();
+							$("#signin-password").val("");
+			            },
+						buttons : [ {
+							label : "확인",
+							hotkey : 13,
+							action : function(cancel) {
+								cancel.close();
+							}
+						} ]
+					});
 				}else{//로그인 성공시에는 세션값에 따라 헤더상태 메뉴가 유지되므로 여기에서 화면을 구성하는 것은 불필요.페이지 재로딩으로 처리
 					location.href="index.jsp";
 				}
@@ -142,7 +156,7 @@ $(document).ready(function() {
 		});//ajax
 		return false;
 	});//LoginForm submit
-
+	
 	//쿠키에 저장된 아이디를 가져와 입력폼에 셋팅 
 	var userInputId = getCookie("userInputId");
 	$("#signin-email").val(userInputId); 
@@ -292,6 +306,7 @@ $(document).ready(function() {
 	//id 중복체크
 	$("#signup-email").keyup(function(){
 		var inputId=$(this).val();
+		 var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 		//console.log(inputId);
 		$.ajax({
 			type:"post",
@@ -300,9 +315,13 @@ $(document).ready(function() {
 			data:"command=CheckId&id="+inputId,
 			success:function(data){
 				if(data.flag=="true"){
-					$("#checkId").html("사용가능!").css("color","blue");
+					if( inputId.match(regExp) ){
+						$("#checkId").text("사용가능!").prop("class","label label-info pull-left")
+					}else {
+						$("#checkId").text("");
+					}
 				} else {
-					$("#checkId").html("사용불가!").css("color","red");
+					$("#checkId").text("사용불가!").prop("class","label label-danger pull-left")
 				}
 			}
 		})//ajax
@@ -312,9 +331,9 @@ $(document).ready(function() {
 	$("#signup-password2").keyup(function(){
 		var checkPass=$(this).val();
 		if($("#signup-password").val()==checkPass){
-			$("#checkPass").html("비밀번호 일치!").css("color","blue");
+			$("#checkPass").text("비밀번호 일치!").prop("class","label label-info pull-left")
 		}else{
-			$("#checkPass").html("비밀번호가 일치하지 않습니다!").css("color","red");
+			$("#checkPass").text("비밀번호가 일치하지 않습니다!").prop("class","label label-danger pull-left");
 		}
 	});//keyup
 	
@@ -338,13 +357,18 @@ $(document).ready(function() {
 	
 	//submit 제어
 	$("#register").submit(function(){
+		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
 		if($('input:checkbox[id="accept-terms"]').is(":checked")==false){
 			failMessage("약관에 동의해 주세요.","#accept-terms");
 			//alert("약관에 동의해 주세요.");
 			//$("#accept-terms").focus();
 			return false;
 		}else if($("#checkId").text()!="사용가능!"){
-			failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
+			if(!$("#signup-email").text().match(regExp)) {
+				failMessage("이메일형식이 아닙니다. 아이디를 확인해 주세요.","#signup-email");
+			} else {
+				failMessage("중복된 아이디입니다. 아이디를 확인해 주세요.","#signup-email");
+			}
 			//alert("중복된 아이디입니다. 아이디를 확인해 주세요.");
 			//$("#signup-email").focus();
 			return false;
@@ -373,7 +397,7 @@ $(document).ready(function() {
 			onhidden : function(dialogRef) {
 				if(form=="#signup-email"){
 					$(form).val("");
-					$("#checkId").html("아이디를 작성하세요!").css("color","green");
+					$("#checkId").text("아이디를 작성하세요!");
 				}
 					$(form).focus();
 				}, // onhidden
