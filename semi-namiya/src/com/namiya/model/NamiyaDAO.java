@@ -229,15 +229,16 @@ public class NamiyaDAO {
 	}// method
 
 	// 게시글을 삭제하는 메서드
-	public void deletePost(int pno) throws SQLException {
+	public void deletePost(int pno, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "DELETE FROM namiya_post WHERE p_no = ?";
+			String sql = "DELETE FROM namiya_post WHERE p_no = ? and id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pno);
+			pstmt.setString(2, id);
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(rs, pstmt, con);

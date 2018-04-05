@@ -21,8 +21,12 @@ public class UpdatePostViewController implements Controller {
 		if (session == null || vo == null||vo.getId()!=id) {
 			return "redirect:index.jsp";
 		}
+		NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		postVO = NamiyaDAO.getInstance().readPostInfo(pNo);
+		if(!postVO.getUserVO().getId().equals(userVO.getId())) {
+			return "accesslimit.jsp";
+		}
 		request.setAttribute("postVO", postVO);
 		request.setAttribute("url", "/post/updatePost.jsp");
 		return "home.jsp";
