@@ -22,9 +22,7 @@
 					<br>
 					<!-- 글내용 -->
 					<div class="form-group">
-						<div class="col-xs-offset-2 col-xs-8 input-group">
-							<textarea class="form-control" rows="10" cols="30" name="acontent" required placeholder="본문내용을 입력해주세요"></textarea>
-						</div>
+						<div class="col-xs-offset-2 col-xs-8 input-group"><textarea class="form-control" rows="10" cols="30" name="acontent">안녕하세요~! ${requestScope.postVO.userVO.nickName }님 관리자 ${sessionScope.userVO.nickName }입니다.</textarea></div>
 					</div>
 				</div>
 				<!-- form-group -->
