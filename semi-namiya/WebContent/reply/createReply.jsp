@@ -22,14 +22,8 @@
 					<br>
 					<!-- 글내용 -->
 					<div class="form-group">
-<<<<<<< HEAD
-						<div class="col-sm-offset-2 col-sm-8 input-group">
-							<textarea class="form-control" rows="10" cols="30" name="acontent">안녕하세요!! ${requestScope.postVO.userVO.nickName }님 ${sessionScope.userVO.nickName }입니다!
-							</textarea>
-=======
 						<div class="col-xs-offset-2 col-xs-8 input-group">
 							<textarea class="form-control" rows="10" cols="30" name="acontent" required placeholder="본문내용을 입력해주세요"></textarea>
->>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 						</div>
 					</div>
 				</div>
