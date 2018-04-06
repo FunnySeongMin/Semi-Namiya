@@ -14,17 +14,22 @@
 			<div class="panel-body">
 				<!-- 제목 -->
 				<div class="form-group">
-					<label for="inputEmail" class="col-sm-3 control-label">제목</label>
-					<div class="col-sm-6 input-group">
+					<label for="inputEmail" class="col-xs-3 control-label">제목</label>
+					<div class="col-xs-6 input-group">
 						<input type="text" class="form-control" maxlength="35" name="atitle"
 							placeholder="답글 제목을 입력하세요" required>
 					</div>
 					<br>
 					<!-- 글내용 -->
 					<div class="form-group">
+<<<<<<< HEAD
 						<div class="col-sm-offset-2 col-sm-8 input-group">
 							<textarea class="form-control" rows="10" cols="30" name="acontent">안녕하세요!! ${requestScope.postVO.userVO.nickName }님 ${sessionScope.userVO.nickName }입니다!
 							</textarea>
+=======
+						<div class="col-xs-offset-2 col-xs-8 input-group">
+							<textarea class="form-control" rows="10" cols="30" name="acontent" required placeholder="본문내용을 입력해주세요"></textarea>
+>>>>>>> branch 'master' of https://github.com/FunnySeongMin/Semi-Namiya.git
 						</div>
 					</div>
 				</div>
@@ -36,7 +41,7 @@
 			</div>
 		</div>
 		<div class="panel-footer text-center">
-			<button type="submit" class="btn btn-sm btn-primary">등록</button>
+			<button type="submit" class="btn btn-xs btn-primary">등록</button>
 		</div>
 	</form>
 </div>
