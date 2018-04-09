@@ -193,18 +193,19 @@ public class NamiyaDAO {
 	}// method
 
 	// 게시글의 내용을 수정하는 메서드
-	public void updatePost(int pNo, String pTitle, String pContent, String lock) throws SQLException {
+	public void updatePost(int pNo, String pTitle, String pContent, String lock, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "UPDATE namiya_post SET p_title = ?, p_content = ?, p_lock=? WHERE p_no = ?";
+			String sql = "UPDATE namiya_post SET p_title = ?, p_content = ?, p_lock=? WHERE p_no = ? and id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pTitle);
 			pstmt.setString(2, pContent);
 			pstmt.setString(3, lock);
 			pstmt.setInt(4, pNo);
+			pstmt.setString(5, id);
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(rs, pstmt, con);

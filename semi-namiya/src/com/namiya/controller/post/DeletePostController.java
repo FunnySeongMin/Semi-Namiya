@@ -23,8 +23,6 @@ public class DeletePostController implements Controller {
 		NamiyaPostVO postVO = NamiyaDAO.getInstance().readPostInfo(pno);
 		NamiyaUserVO userVO = (NamiyaUserVO)session.getAttribute("userVO");
 		if(!postVO.getUserVO().getId().equals(userVO.getId())) {
-			System.out.println(postVO.getUserVO().getId());
-			System.out.println(userVO.getId());
 			return "accesslimit.jsp";
 		}
 		NamiyaDAO.getInstance().deletePost(pno, userVO.getId());
