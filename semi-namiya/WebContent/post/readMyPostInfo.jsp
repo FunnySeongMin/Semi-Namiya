@@ -7,7 +7,7 @@
 
 <!-- 게시글 -->
 <div class="col-xs-offset-2 col-xs-7 animated fadeInDown">
-	<form class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post">
+	<form id="readPostListForm" class="form-horizontal" action="${pageContext.request.contextPath}/dispatcher" method="post" onsubmit="return false;">
 		<div class="panel panel-primary" id="panels" data-effect="helix">
 			<div class="panel-heading">
 				<span> 제목 : ${requestScope.postVO.pTitle} </span>
@@ -25,8 +25,12 @@
 				 <div class="alert alert-success" style="white-space: pre-wrap;">${requestScope.postVO.pContent}</div>
 			</div>
 			<div class="panel-footer text-center">
-					<button type="button" class="btn btn-xs btn-danger" id="deleteConfirm">삭제</button>
+					<c:if test="${requestScope.postVO.userVO.id==sessionScope.userVO.id}"><%--삭제,수정 버튼은 작성자 본인일때만 --%>
+					<input type="hidden" name="command" value="DeletePost">
+					<input type="hidden" name="pNo" value="${requestScope.postVO.pNo }">
+					<button type="submit" class="btn btn-xs btn-danger" id="deleteConfirm">삭제</button>
 					<button type="button" class="btn btn-xs btn-primary" id="updateConfirm">수정</button>
+				</c:if>
 					<button type="button" class="btn btn-xs btn-default" onclick="location.href='dispatcher?command=ReadMyPostList&pageNo=${My_nowPage}'">목록</button>
 			</div>
 		</div>
